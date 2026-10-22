@@ -1,0 +1,29 @@
+.beacon { min-height: 100dvh; display: flex; flex-direction: column; max-width: 520px; margin: 0 auto; padding: 0 16px calc(12px + env(safe-area-inset-bottom)); }
+.b-top { display: flex; align-items: center; gap: 8px; padding-top: calc(10px + env(safe-area-inset-top)); }
+.b-x { width: 48px; height: 48px; border: 0; background: none; color: var(--ink); display: grid; place-items: center; cursor: pointer; }
+.b-seg { margin-left: auto; display: flex; background: var(--fill); border-radius: 14px; padding: 4px; }
+.b-seg button { min-height: 44px; padding: 0 14px; border: 0; border-radius: 10px; background: none; font-weight: 800; font-size: 15px; cursor: pointer; }
+.b-seg button[aria-selected='true'] { background: var(--ink); color: var(--on-ink); }
+.b-lang { display: flex; }
+.b-lang button { min-width: 36px; min-height: 44px; border: 0; background: none; font-weight: 800; font-size: 12px; color: var(--ink-2); cursor: pointer; }
+.b-pick { margin: 8px auto 0; min-height: 44px; max-width: 100%; border: 1.5px solid var(--hair); border-radius: 999px; background: var(--card); color: var(--ink); font: 700 14px var(--font); padding: 0 12px; }
+
+.b-dial-wrap { position: relative; width: min(82vw, 340px); aspect-ratio: 1; margin: 22px auto 10px; }
+.b-dial { position: absolute; inset: 0; border-radius: 50%; background: var(--card); border: 3px solid var(--line); will-change: transform; }
+.b-n { position: absolute; top: 10px; left: 50%; transform: translateX(-50%); font-weight: 800; font-size: 20px; }
+.b-arrow { position: absolute; inset: 18%; width: 64%; height: 64%; will-change: transform; }
+.b-arrow path { fill: var(--lacquer); stroke: var(--line); stroke-width: 4; stroke-linejoin: round; }
+.b-dial-wrap.idle .b-arrow path { fill: var(--fill); }
+.b-start { position: absolute; left: 50%; top: 50%; transform: translate(-50%, -50%); min-width: 160px; min-height: 64px; font-size: 21px; border-radius: 999px; }
+
+.b-read { text-align: center; }
+.b-dist { margin: 0; font-size: clamp(72px, 24vw, 104px); font-weight: 800; line-height: 1; letter-spacing: -0.03em; font-variant-numeric: tabular-nums; }
+.b-dist small { font-size: 0.4em; letter-spacing: 0; }
+.b-to { margin: 8px 0 0; font-size: 22px; font-weight: 800; }
+.b-walk { margin: 2px 0 0; font-size: 16px; }
+.b-note { margin: 6px 0 0; font-size: 15px; font-weight: 700; }
+.b-msg { font-size: 18px; font-weight: 700; margin: 12px 0; }
+.b-hint { margin: 10px auto 0; max-width: 340px; padding: 8px 12px; border-radius: 10px; background: var(--fill); font-size: 15px; font-weight: 700; }
+.b-meet { margin-top: 12px; }
+.b-small { font-size: 13px; margin: 6px 0 0; }
+.b-foot { margin-top: auto; padding-top: 16px; border-top: 1.5px solid var(--hair); display: flex; justify-content: space-between; gap: 12px; font-size: 13px; font-weight: 700; color: var(--ink-2); }

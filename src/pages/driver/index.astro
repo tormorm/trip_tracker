@@ -1,0 +1,72 @@
+---
+import Base from '../../layouts/Base.astro';
+import T from '../../components/T.astro';
+import CardChrome from '../../components/CardChrome.astro';
+import StopsData from '../../components/StopsData.astro';
+import { trip, phrases } from '../../lib/data';
+import { telHref } from '../../lib/trip';
+---
+<Base title="Näita juhile · Driver card" tabs={false} banner={false}>
+  <main class="sheet-page">
+    <CardChrome instruction="card.show" />
+    {trip.stops.map((s) => {
+      const lang = s.country === 'KH' ? 'km' : 'vi';
+      const lines = phrases.cards[lang];
+      const h = s.hotel;
+      return (
+        <article class="dcard" data-hotel={s.id} hidden>
+          <div class:list={['bar', `bar-${s.country}`]} />
+          <div class="local" lang={lang}>
+            <p class="take">{lines.takeMeTo}</p>
+            <h1 class="lname">{h.nameLocal}</h1>
+            <p class="laddr">{h.addressLocal}</p>
+            <hr />
+            <p class="take">{lines.phone}</p>
+            <p class="lphone">{h.phone}</p>
+          </div>
+          {h.hint && <p class="hint"><T v={h.hint} /> · {s.name}</p>}
+          <footer>
+            <p class="foryou">
+              <T k="card.forYou" />: <span data-l="et">„Palun viige mind: {h.name}.“</span><span data-l="en">“Please take me to: {h.name}.”</span>
+            </p>
+            <a class="call" href={telHref(h.phone)}>
+              <svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"><path d="M5 3h4l2 5-2.5 1.5a11 11 0 0 0 6 6L16 13l5 2v4a2 2 0 0 1-2 2A16 16 0 0 1 3 5a2 2 0 0 1 2-2" /></svg>
+              <T k="card.call" />
+            </a>
+          </footer>
+        </article>
+      );
+    })}
+  </main>
+  <StopsData />
+</Base>
+
+<script>
+  import { initHotelPicker } from '../../lib/hotelPicker';
+  initHotelPicker();
+</script>
+
+<style>
+  /* Sign-like: pure white/black, huge local script, no personality. */
+  :global(body) { background: #fff; color: #000; }
+  @media (prefers-color-scheme: dark) { :global(body) { background: #000; color: #fff; } }
+  .sheet-page { max-width: 720px; margin: 0 auto; min-height: 100dvh; display: flex; flex-direction: column; }
+  .dcard { flex: 1; display: flex; flex-direction: column; padding: 0 20px calc(20px + env(safe-area-inset-bottom)); }
+  .dcard[hidden] { display: none; }
+  .bar { height: 10px; border-radius: 5px; margin: 6px 0 22px; background: #a8241c; }
+  .bar-KH { background: #c2531a; }
+  .take { margin: 0 0 10px; font-size: 26px; font-weight: 700; }
+  .lname { font-size: clamp(40px, 12vw, 64px); font-weight: 800; line-height: 1.12; margin: 0 0 14px; overflow-wrap: anywhere; }
+  .laddr { font-size: clamp(26px, 8vw, 40px); font-weight: 700; line-height: 1.25; margin: 0; overflow-wrap: anywhere; }
+  .local[lang='km'] .lname, .local[lang='km'] .laddr, .local[lang='km'] .take { line-height: 1.6; font-family: var(--font-km); }
+  hr { border: 0; border-top: 3px solid currentColor; margin: 22px 0 16px; }
+  .lphone { font-size: clamp(34px, 11vw, 52px); font-weight: 800; margin: 0; letter-spacing: 0.01em; }
+  .hint { margin: 14px 0 0; font-size: 15px; font-weight: 600; opacity: 0.75; }
+  footer { margin-top: auto; padding-top: 24px; }
+  .foryou { font-size: 15px; margin: 0 0 10px; opacity: 0.8; }
+  .call {
+    display: flex; align-items: center; justify-content: center; gap: 12px; min-height: 64px; border-radius: 16px;
+    background: #000; color: #fff; font-weight: 800; font-size: 20px; text-decoration: none;
+  }
+  @media (prefers-color-scheme: dark) { .call { background: #fff; color: #000; } }
+</style>

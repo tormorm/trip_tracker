@@ -1,0 +1,90 @@
+---
+import Base from '../../layouts/Base.astro';
+import T from '../../components/T.astro';
+import CardChrome from '../../components/CardChrome.astro';
+import StopsData from '../../components/StopsData.astro';
+import { trip, phrases, emergency } from '../../lib/data';
+import { telHref } from '../../lib/trip';
+const c = emergency.lostContact;
+---
+<Base title="Olen eksinud · Lost card" tabs={false} banner={false}>
+  <main class="sheet-page">
+    {trip.stops.map((s) => {
+      const lang = s.country === 'KH' ? 'km' : 'vi';
+      const L = phrases.cards[lang];
+      const h = s.hotel;
+      return (
+        <article class="lcard" data-hotel={s.id} hidden>
+          <header class="head">
+            <div class="local" lang={lang}>
+              <h1>{L.lost}</h1>
+              <p class="nolang">{L.noLanguage}</p>
+            </div>
+          </header>
+          <div class="local body" lang={lang}>
+            <p class="lbl">{L.callThis}</p>
+            <a class="big" href={telHref(c.phone)}>{c.phone}</a>
+            <p class="small">{c.name}</p>
+            <hr />
+            <p class="lbl">{L.myHotel}</p>
+            <p class="mid">{h.nameLocal}</p>
+            <p class="addr">{h.addressLocal}</p>
+            <p class="lbl">{L.helpMeHotel}</p>
+            <a class="big2" href={telHref(h.phone)}>{h.phone}</a>
+            <p class="lbl">{L.myName}</p>
+            <p class="mid" data-my-name>—</p>
+          </div>
+          <footer>
+            <p class="foryou">
+              <T k="card.forYou" />: <span data-l="et">„Olen eksinud. Palun helistage sellele numbrile või aidake mind hotelli.“</span><span data-l="en">“I am lost. Please call this number or help me get to my hotel.”</span>
+            </p>
+            <a class="go" data-hotel-link="/beacon/" href="/beacon/">
+              <svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true"><path d="M12 2 20 22 12 17 4 22Z" fill="currentColor" /></svg>
+              <T k="card.toHotel" />
+            </a>
+          </footer>
+        </article>
+      );
+    })}
+  </main>
+  <div class="chrome-wrap"><CardChrome instruction="card.showAnyone" inverse /></div>
+  <StopsData />
+</Base>
+
+<script>
+  import { initHotelPicker } from '../../lib/hotelPicker';
+  initHotelPicker();
+  try {
+    const name = localStorage.getItem('tc.name');
+    if (name) document.querySelectorAll('[data-my-name]').forEach((el) => (el.textContent = name));
+  } catch {}
+</script>
+
+<style>
+  :global(body) { background: #fff; color: #000; }
+  @media (prefers-color-scheme: dark) { :global(body) { background: #000; color: #fff; } }
+  .chrome-wrap { position: absolute; top: 0; left: 0; right: 0; color: #fff; max-width: 720px; margin: 0 auto; }
+  .sheet-page { max-width: 720px; margin: 0 auto; min-height: 100dvh; display: flex; flex-direction: column; }
+  .lcard { flex: 1; display: flex; flex-direction: column; }
+  .lcard[hidden] { display: none; }
+  .head { background: #a8241c; color: #fff; padding: calc(70px + env(safe-area-inset-top)) 20px 18px; }
+  h1 { font-size: clamp(44px, 13vw, 64px); font-weight: 800; }
+  .nolang { margin: 6px 0 0; font-size: 21px; font-weight: 700; }
+  .body { padding: 18px 20px 0; }
+  .local[lang='km'] h1, .local[lang='km'] p, .local[lang='km'] a { font-family: var(--font-km); line-height: 1.55; }
+  .lbl { margin: 14px 0 2px; font-size: 21px; font-weight: 700; }
+  .lbl:first-child { margin-top: 0; }
+  .big { display: block; font-size: clamp(36px, 11vw, 52px); font-weight: 800; text-decoration: none; color: inherit; }
+  .big2 { display: block; font-size: clamp(28px, 9vw, 40px); font-weight: 800; text-decoration: none; color: inherit; }
+  .small { margin: 0; font-size: 17px; font-weight: 600; opacity: 0.75; }
+  .mid { margin: 0; font-size: clamp(26px, 8vw, 34px); font-weight: 800; line-height: 1.2; }
+  .addr { margin: 4px 0 0; font-size: 18px; font-weight: 600; }
+  hr { border: 0; border-top: 3px solid currentColor; margin: 18px 0 8px; }
+  footer { margin-top: auto; padding: 22px 20px calc(20px + env(safe-area-inset-bottom)); }
+  .foryou { font-size: 15px; margin: 0 0 10px; opacity: 0.8; }
+  .go {
+    display: flex; align-items: center; justify-content: center; gap: 12px; min-height: 64px; border-radius: 16px;
+    background: #000; color: #fff; font-weight: 800; font-size: 20px; text-decoration: none;
+  }
+  @media (prefers-color-scheme: dark) { .go { background: #fff; color: #000; } }
+</style>

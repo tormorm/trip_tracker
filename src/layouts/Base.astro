@@ -2,7 +2,9 @@
 import '../styles/global.css';
 import TabBar from '../components/TabBar.astro';
 import PlaceholderBanner from '../components/PlaceholderBanner.astro';
+import NamePicker from '../components/react/NamePicker';
 import { DEFAULT_LANG } from '../i18n/ui';
+import { trip } from '../lib/data';
 
 interface Props {
   title: string;
@@ -10,8 +12,10 @@ interface Props {
   tabs?: boolean;
   /** Full-height app screen (map): no page scroll. */
   fullscreen?: boolean;
+  /** Cards shown to strangers (driver, lost) skip the placeholder banner. */
+  banner?: boolean;
 }
-const { title, tabs = true, fullscreen = false } = Astro.props;
+const { title, tabs = true, fullscreen = false, banner = true } = Astro.props;
 ---
 <!doctype html>
 <html lang={DEFAULT_LANG} data-lang={DEFAULT_LANG}>
@@ -34,8 +38,9 @@ const { title, tabs = true, fullscreen = false } = Astro.props;
     </script>
   </head>
   <body class:list={{ fullscreen }}>
-    <PlaceholderBanner />
+    {banner && <PlaceholderBanner />}
     <slot />
     {tabs && <TabBar />}
+    {tabs && <NamePicker client:idle travellers={trip.travellers.map(({ id, name, color }) => ({ id, name, color }))} />}
   </body>
 </html>

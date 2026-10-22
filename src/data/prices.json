@@ -3,8 +3,8 @@
     {
       "country": "VN",
       "footnote": {
-        "et": "k = tuhat đồngi. Hinnangulised — kontrolli kohapeal.",
-        "en": "k = thousand đồng. Estimates — verify locally."
+        "et": "k = tuhat đồngi. Hinnangulised.",
+        "en": "k = thousand đồng. Estimates."
       },
       "categories": [
         {
@@ -137,8 +137,8 @@
     {
       "country": "KH",
       "footnote": {
-        "et": "Hinnad USD-s; alla $1 tagasi rielides (≈ 4000 ៛ = $1). Hinnangulised — kontrolli kohapeal.",
-        "en": "Prices in USD; change under $1 comes in riel (≈ 4000 ៛ = $1). Estimates — verify locally."
+        "et": "Hinnad USD-s; alla $1 tagasi rielides (≈ 4000 ៛ = $1). Hinnangulised.",
+        "en": "Prices in USD; change under $1 comes in riel (≈ 4000 ៛ = $1). Estimates."
       },
       "categories": [
         {

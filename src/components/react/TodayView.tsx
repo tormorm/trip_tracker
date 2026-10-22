@@ -29,9 +29,14 @@ function useTripNow() {
 function useName() {
   const [name, setName] = useState<string | null>(null);
   useEffect(() => {
-    try {
-      setName(localStorage.getItem('tc.name'));
-    } catch {}
+    const read = () => {
+      try {
+        setName(localStorage.getItem('tc.name'));
+      } catch {}
+    };
+    read();
+    addEventListener('tc:name', read);
+    return () => removeEventListener('tc:name', read);
   }, []);
   return name;
 }

@@ -1,0 +1,13 @@
+---
+// Minimal stop dates for client scripts (default hotel = tonight's).
+import { trip } from '../lib/data';
+const mini = {
+  startDate: trip.startDate,
+  endDate: trip.endDate,
+  stops: trip.stops.map(({ id, arrive, depart, lat, lng, name, country, hotel }) => ({
+    id, arrive, depart, lat, lng, name, country,
+    hotel: { name: hotel.name, lat: hotel.lat, lng: hotel.lng },
+  })),
+};
+---
+<script type="application/json" id="stops-data" set:html={JSON.stringify(mini)} />

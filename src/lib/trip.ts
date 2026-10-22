@@ -34,3 +34,27 @@ export const nights = (s: Pick<Stop, 'arrive' | 'depart'>) => daysBetween(s.arri
 
 export const telHref = (phone: string) => `tel:${phone.replace(/[^+0-9]/g, '')}`;
 export const gmapsHref = (lat: number, lng: number) => `https://www.google.com/maps/search/?api=1&query=${lat},${lng}`;
+
+/** Hotel to show by default: tonight's; before the trip the first, after it the last. */
+export function defaultStopId(trip: Pick<Trip, 'startDate' | 'endDate' | 'stops'>, date: string): string {
+  const phase = phaseOf(trip, date);
+  if (phase === 'before') return trip.stops[0].id;
+  if (phase === 'after') return trip.stops[trip.stops.length - 1].id;
+  return (stopForNight(trip.stops, date) ?? stopForDate(trip.stops, date) ?? trip.stops[0]).id;
+}
+
+/** Great-circle distance in metres. */
+export function distanceM(lat1: number, lng1: number, lat2: number, lng2: number): number {
+  const R = 6_371_000, r = Math.PI / 180;
+  const dLat = (lat2 - lat1) * r, dLng = (lng2 - lng1) * r;
+  const a = Math.sin(dLat / 2) ** 2 + Math.cos(lat1 * r) * Math.cos(lat2 * r) * Math.sin(dLng / 2) ** 2;
+  return 2 * R * Math.asin(Math.sqrt(a));
+}
+
+/** Initial great-circle bearing, degrees clockwise from north. */
+export function bearingDeg(lat1: number, lng1: number, lat2: number, lng2: number): number {
+  const r = Math.PI / 180;
+  const y = Math.sin((lng2 - lng1) * r) * Math.cos(lat2 * r);
+  const x = Math.cos(lat1 * r) * Math.sin(lat2 * r) - Math.sin(lat1 * r) * Math.cos(lat2 * r) * Math.cos((lng2 - lng1) * r);
+  return ((Math.atan2(y, x) / r) + 360) % 360;
+}

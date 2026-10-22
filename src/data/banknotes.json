@@ -1,0 +1,188 @@
+{
+  "countries": [
+    {
+      "country": "VN",
+      "currency": "VND",
+      "symbol": "₫",
+      "notes": [
+        {
+          "id": "vnd-500000",
+          "value": 500000,
+          "label": "500.000",
+          "color": "#3AA6C9",
+          "colorName": {
+            "et": "Türkiis",
+            "en": "Turquoise"
+          },
+          "approx": "≈ €[x]",
+          "placeholder": true
+        },
+        {
+          "id": "vnd-200000",
+          "value": 200000,
+          "label": "200.000",
+          "color": "#C8703A",
+          "colorName": {
+            "et": "Punakaspruun",
+            "en": "Red-brown"
+          },
+          "approx": "≈ €[x]",
+          "placeholder": true
+        },
+        {
+          "id": "vnd-100000",
+          "value": 100000,
+          "label": "100.000",
+          "color": "#5E9B4C",
+          "colorName": {
+            "et": "Roheline",
+            "en": "Green"
+          },
+          "approx": "≈ €[x]",
+          "placeholder": true
+        },
+        {
+          "id": "vnd-50000",
+          "value": 50000,
+          "label": "50.000",
+          "color": "#C2588F",
+          "colorName": {
+            "et": "Roosa",
+            "en": "Pink"
+          },
+          "approx": "≈ €[x]",
+          "placeholder": true
+        },
+        {
+          "id": "vnd-20000",
+          "value": 20000,
+          "label": "20.000",
+          "color": "#3D6FB8",
+          "colorName": {
+            "et": "Sinine",
+            "en": "Blue"
+          },
+          "approx": "≈ €[x]",
+          "placeholder": true
+        },
+        {
+          "id": "vnd-10000",
+          "value": 10000,
+          "label": "10.000",
+          "color": "#B8913A",
+          "colorName": {
+            "et": "Kollakaspruun",
+            "en": "Yellow-brown"
+          },
+          "approx": "≈ €[x]",
+          "placeholder": true
+        }
+      ],
+      "lookalikes": [
+        {
+          "ids": [
+            "vnd-500000",
+            "vnd-20000"
+          ],
+          "warning": {
+            "et": "20.000 ja 500.000 on mõlemad sinised. Loe nullid üle, enne kui ulatad.",
+            "en": "20,000 and 500,000 are both blue. Count the zeros before handing over."
+          }
+        },
+        {
+          "ids": [
+            "vnd-200000",
+            "vnd-10000"
+          ],
+          "warning": {
+            "et": "10.000 ja 200.000 on mõlemad pruunikad.",
+            "en": "10,000 and 200,000 are both brownish."
+          }
+        }
+      ]
+    },
+    {
+      "country": "KH",
+      "currency": "KHR",
+      "symbol": "៛",
+      "note": {
+        "et": "USD on Kambodžas tavaline maksevahend. Riel tuleb tagasirahana alla $1 (≈ 4000 ៛ = $1). Rebenenud dollareid ei võeta vastu.",
+        "en": "USD is widely used in Cambodia. Riel comes back as change under $1 (≈ 4000 ៛ = $1). Torn dollar bills are refused."
+      },
+      "notes": [
+        {
+          "id": "khr-20000",
+          "value": 20000,
+          "label": "20.000",
+          "color": "#A0558C",
+          "colorName": {
+            "et": "Lilla",
+            "en": "Purple"
+          },
+          "approx": "≈ €[x]",
+          "placeholder": true
+        },
+        {
+          "id": "khr-10000",
+          "value": 10000,
+          "label": "10.000",
+          "color": "#4C7DAF",
+          "colorName": {
+            "et": "Sinine",
+            "en": "Blue"
+          },
+          "approx": "≈ €[x]",
+          "placeholder": true
+        },
+        {
+          "id": "khr-5000",
+          "value": 5000,
+          "label": "5.000",
+          "color": "#6B8E4E",
+          "colorName": {
+            "et": "Roheline",
+            "en": "Green"
+          },
+          "approx": "≈ €[x]",
+          "placeholder": true
+        },
+        {
+          "id": "khr-1000",
+          "value": 1000,
+          "label": "1.000",
+          "color": "#7A8C6E",
+          "colorName": {
+            "et": "Hallikasroheline",
+            "en": "Grey-green"
+          },
+          "approx": "≈ €[x]",
+          "placeholder": true
+        },
+        {
+          "id": "khr-500",
+          "value": 500,
+          "label": "500",
+          "color": "#C25B4A",
+          "colorName": {
+            "et": "Punane",
+            "en": "Red"
+          },
+          "approx": "≈ €[x]",
+          "placeholder": true
+        }
+      ],
+      "lookalikes": [
+        {
+          "ids": [
+            "khr-5000",
+            "khr-1000"
+          ],
+          "warning": {
+            "et": "1.000 ja 5.000 on mõlemad rohekad.",
+            "en": "1,000 and 5,000 are both greenish."
+          }
+        }
+      ]
+    }
+  ]
+}

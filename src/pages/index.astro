@@ -1,0 +1,14 @@
+---
+import Base from '../layouts/Base.astro';
+import T from '../components/T.astro';
+import LangToggle from '../components/LangToggle.astro';
+---
+<Base title="Täna">
+  <main class="page">
+    <header style="display:flex;justify-content:space-between;align-items:center;gap:12px">
+      <h1 class="serif" style="font-size:40px"><T k="tab.today" /></h1>
+      <LangToggle />
+    </header>
+    <p class="muted"><T k="stub.soon" /></p>
+  </main>
+</Base>

@@ -1,0 +1,99 @@
+{
+  "countries": [
+    {
+      "country": "VN",
+      "numbers": [
+        {
+          "label": {
+            "et": "Politsei",
+            "en": "Police"
+          },
+          "number": "113"
+        },
+        {
+          "label": {
+            "et": "Tuletõrje",
+            "en": "Fire"
+          },
+          "number": "114"
+        },
+        {
+          "label": {
+            "et": "Kiirabi",
+            "en": "Ambulance"
+          },
+          "number": "115"
+        }
+      ]
+    },
+    {
+      "country": "KH",
+      "numbers": [
+        {
+          "label": {
+            "et": "Politsei",
+            "en": "Police"
+          },
+          "number": "117"
+        },
+        {
+          "label": {
+            "et": "Tuletõrje",
+            "en": "Fire"
+          },
+          "number": "118"
+        },
+        {
+          "label": {
+            "et": "Kiirabi",
+            "en": "Ambulance"
+          },
+          "number": "119"
+        }
+      ]
+    }
+  ],
+  "embassies": [
+    {
+      "name": {
+        "et": "[Saatkond] — Vietnam",
+        "en": "[Embassy] — Vietnam"
+      },
+      "country": "VN",
+      "address": "[Address], Hà Nội",
+      "phone": "+84 [number]",
+      "email": "embassy@example.org",
+      "note": {
+        "et": "Kontrolli, milline EL-i saatkond esindab Eestit.",
+        "en": "Check which EU embassy represents Estonia."
+      },
+      "placeholder": true
+    },
+    {
+      "name": {
+        "et": "[Saatkond] — Kambodža",
+        "en": "[Embassy] — Cambodia"
+      },
+      "country": "KH",
+      "address": "[Address], Phnom Penh",
+      "phone": "+855 [number]",
+      "email": "embassy@example.org",
+      "placeholder": true
+    }
+  ],
+  "insurance": {
+    "provider": "[Insurer]",
+    "policy": "[Policy no.]",
+    "phone": "+372 [number]",
+    "note": {
+      "et": "24/7 abitelefon. Hoia poliisi numbrit käepärast.",
+      "en": "24/7 assistance line. Keep the policy number handy."
+    },
+    "placeholder": true
+  },
+  "lostContact": {
+    "name": "[Contact name]",
+    "phone": "+84 [number]",
+    "placeholder": true
+  }
+}

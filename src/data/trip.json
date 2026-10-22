@@ -1,0 +1,915 @@
+{
+  "title": {
+    "et": "Vietnam ja Kambodža",
+    "en": "Vietnam & Cambodia"
+  },
+  "timezone": "Asia/Ho_Chi_Minh",
+  "startDate": "2026-12-16",
+  "endDate": "2027-01-08",
+  "travellers": [
+    {
+      "id": "guorong",
+      "name": "Guorong",
+      "color": "#C2531A",
+      "placeholder": true
+    },
+    {
+      "id": "ema",
+      "name": "Ema",
+      "color": "#1D6A4F",
+      "placeholder": true
+    },
+    {
+      "id": "isa",
+      "name": "Isa",
+      "color": "#1B1915",
+      "placeholder": true
+    },
+    {
+      "id": "sten",
+      "name": "Sten",
+      "color": "#A8241C",
+      "placeholder": true
+    },
+    {
+      "id": "mari",
+      "name": "Mari",
+      "color": "#B08A2E",
+      "placeholder": true
+    }
+  ],
+  "stops": [
+    {
+      "id": "hanoi",
+      "name": "Hà Nội",
+      "nameLocal": "Hà Nội",
+      "country": "VN",
+      "lat": 21.0285,
+      "lng": 105.8542,
+      "bbox": [
+        105.8,
+        20.99,
+        105.89,
+        21.07
+      ],
+      "arrive": "2026-12-16",
+      "depart": "2026-12-18",
+      "blurb": {
+        "et": "Pealinn järvede ja tänavatoiduga. Vanalinn jalgsi, liiklus aeglaselt.",
+        "en": "Capital of lakes and street food. Old Quarter on foot, traffic slowly."
+      },
+      "bestTimes": [
+        {
+          "when": {
+            "et": "enne 07:00",
+            "en": "before 07:00"
+          },
+          "what": {
+            "et": "Hoàn Kiếmi järv: tai chi ja tühjad teed",
+            "en": "Hoàn Kiếm Lake: tai chi and empty paths"
+          }
+        },
+        {
+          "when": {
+            "et": "pärast 19:00",
+            "en": "after 19:00"
+          },
+          "what": {
+            "et": "Vanalinna toidutänavad",
+            "en": "Old Quarter food streets"
+          }
+        }
+      ],
+      "hotel": {
+        "name": "[Hotel name], Hà Nội",
+        "nameLocal": "Khách sạn [Tên]",
+        "address": "[No.] [Street], Hà Nội",
+        "addressLocal": "[Số] phố [Tên phố], Hoàn Kiếm, Hà Nội",
+        "phone": "+84 [number]",
+        "lat": 21.0333,
+        "lng": 105.85,
+        "checkIn": "2026-12-16T14:00",
+        "checkOut": "2026-12-18T12:00",
+        "placeholder": true,
+        "hint": {
+          "et": "Vanalinn, järve lähedal",
+          "en": "Old Quarter, near the lake"
+        }
+      },
+      "placeholder": true
+    },
+    {
+      "id": "ninh-binh",
+      "name": "Ninh Bình",
+      "nameLocal": "Ninh Bình",
+      "country": "VN",
+      "lat": 20.2154,
+      "lng": 105.938,
+      "bbox": [
+        105.84,
+        20.17,
+        105.98,
+        20.3
+      ],
+      "arrive": "2026-12-18",
+      "depart": "2026-12-20",
+      "blurb": {
+        "et": "Lubjakivikaljud ja riisipõllud. Paadiga koobastesse.",
+        "en": "Limestone karsts and rice fields. Boats into caves."
+      },
+      "bestTimes": [
+        {
+          "when": {
+            "et": "enne 08:00",
+            "en": "before 08:00"
+          },
+          "what": {
+            "et": "Tràng An paadid enne bussigruppe",
+            "en": "Tràng An boats before the tour buses"
+          }
+        },
+        {
+          "when": {
+            "et": "päikeseloojang",
+            "en": "sunset"
+          },
+          "what": {
+            "et": "Hang Múa vaateplatvorm",
+            "en": "Hang Múa viewpoint"
+          }
+        }
+      ],
+      "hotel": {
+        "name": "[Hotel name], Ninh Bình",
+        "nameLocal": "Khách sạn [Tên]",
+        "address": "[No.] [Street], Ninh Bình",
+        "addressLocal": "[Số] đường [Tên đường], Tam Cốc, Hoa Lư, Ninh Bình",
+        "phone": "+84 [number]",
+        "lat": 20.216,
+        "lng": 105.937,
+        "checkIn": "2026-12-18T14:00",
+        "checkOut": "2026-12-20T12:00",
+        "placeholder": true,
+        "hint": {
+          "et": "Tam Cốc küla",
+          "en": "Tam Cốc village"
+        }
+      },
+      "placeholder": true
+    },
+    {
+      "id": "hoi-an",
+      "name": "Hội An",
+      "nameLocal": "Hội An",
+      "country": "VN",
+      "lat": 15.8801,
+      "lng": 108.338,
+      "bbox": [
+        108.28,
+        15.85,
+        108.37,
+        15.93
+      ],
+      "arrive": "2026-12-20",
+      "depart": "2026-12-24",
+      "blurb": {
+        "et": "Laternalinn Thu Bồni jõe ääres. Käi jalgsi läbi, siis sõida rattaga välja.",
+        "en": "Lantern town on the Thu Bồn river. Walk it, then cycle out."
+      },
+      "bestTimes": [
+        {
+          "when": {
+            "et": "enne 08:00",
+            "en": "before 08:00"
+          },
+          "what": {
+            "et": "Vanalinn ja Chùa Cầu, peaaegu tühjad",
+            "en": "Old town and Chùa Cầu, nearly empty"
+          }
+        },
+        {
+          "when": "11–15",
+          "what": {
+            "et": "Kõige palavam. Cao lầu, siis pikk lõuna",
+            "en": "Hottest. Cao lầu, then a long lunch"
+          }
+        },
+        {
+          "when": {
+            "et": "pärast 18:00",
+            "en": "after 18:00"
+          },
+          "what": {
+            "et": "Laternad põlevad; jõepaadid silla juurest",
+            "en": "Lanterns lit; river boats by the bridge"
+          }
+        }
+      ],
+      "hotel": {
+        "name": "[Hotel name], Hội An",
+        "nameLocal": "Khách sạn [Tên]",
+        "address": "[No.] [Street], Hội An",
+        "addressLocal": "[Số] đường [Tên đường], Phường Minh An, Hội An",
+        "phone": "+84 [number]",
+        "lat": 15.879,
+        "lng": 108.33,
+        "checkIn": "2026-12-20T14:00",
+        "checkOut": "2026-12-24T12:00",
+        "placeholder": true,
+        "hint": {
+          "et": "Vanalinna serv",
+          "en": "Edge of the old town"
+        }
+      },
+      "placeholder": true
+    },
+    {
+      "id": "saigon",
+      "name": "Sài Gòn",
+      "nameLocal": "Thành phố Hồ Chí Minh",
+      "country": "VN",
+      "lat": 10.7769,
+      "lng": 106.7009,
+      "bbox": [
+        106.65,
+        10.74,
+        106.74,
+        10.81
+      ],
+      "arrive": "2026-12-24",
+      "depart": "2026-12-27",
+      "blurb": {
+        "et": "Kiire ja kuum. Kohvikud korterelamutes, toit tänavanurkadel.",
+        "en": "Fast and hot. Cafés in apartment blocks, food on street corners."
+      },
+      "bestTimes": [
+        {
+          "when": {
+            "et": "hommikul",
+            "en": "morning"
+          },
+          "what": {
+            "et": "Muuseumid enne kuumust",
+            "en": "Museums before the heat"
+          }
+        },
+        {
+          "when": {
+            "et": "õhtul",
+            "en": "evening"
+          },
+          "what": {
+            "et": "Toiduturud ja katusebaarid",
+            "en": "Food markets and rooftops"
+          }
+        }
+      ],
+      "hotel": {
+        "name": "[Hotel name], Sài Gòn",
+        "nameLocal": "Khách sạn [Tên]",
+        "address": "[No.] [Street], Sài Gòn",
+        "addressLocal": "[Số] đường [Tên đường], Quận 1, TP. Hồ Chí Minh",
+        "phone": "+84 [number]",
+        "lat": 10.774,
+        "lng": 106.699,
+        "checkIn": "2026-12-24T14:00",
+        "checkOut": "2026-12-27T12:00",
+        "placeholder": true,
+        "hint": {
+          "et": "1. linnaosa",
+          "en": "District 1"
+        }
+      },
+      "placeholder": true
+    },
+    {
+      "id": "can-tho",
+      "name": "Cần Thơ",
+      "nameLocal": "Cần Thơ",
+      "country": "VN",
+      "lat": 10.0452,
+      "lng": 105.7469,
+      "bbox": [
+        105.7,
+        9.99,
+        105.8,
+        10.09
+      ],
+      "arrive": "2026-12-27",
+      "depart": "2026-12-29",
+      "blurb": {
+        "et": "Mekongi delta. Ujuvturg algab koidikul.",
+        "en": "Mekong Delta. The floating market starts at dawn."
+      },
+      "bestTimes": [
+        {
+          "when": "05:30–08:00",
+          "what": {
+            "et": "Cái Răngi ujuvturg",
+            "en": "Cái Răng floating market"
+          }
+        }
+      ],
+      "hotel": {
+        "name": "[Hotel name], Cần Thơ",
+        "nameLocal": "Khách sạn [Tên]",
+        "address": "[No.] [Street], Cần Thơ",
+        "addressLocal": "[Số] đường [Tên đường], Ninh Kiều, Cần Thơ",
+        "phone": "+84 [number]",
+        "lat": 10.034,
+        "lng": 105.788,
+        "checkIn": "2026-12-27T14:00",
+        "checkOut": "2026-12-29T12:00",
+        "placeholder": true,
+        "hint": {
+          "et": "Jõe kaldapromenaad",
+          "en": "Riverside promenade"
+        }
+      },
+      "placeholder": true
+    },
+    {
+      "id": "siem-reap",
+      "name": "Siem Reap",
+      "nameLocal": "សៀមរាប",
+      "country": "KH",
+      "lat": 13.3633,
+      "lng": 103.8564,
+      "bbox": [
+        103.8,
+        13.32,
+        103.98,
+        13.62
+      ],
+      "arrive": "2026-12-29",
+      "depart": "2027-01-03",
+      "blurb": {
+        "et": "Angkori templid. Vara üles, keskpäeval puhka.",
+        "en": "The Angkor temples. Up early, rest at midday."
+      },
+      "bestTimes": [
+        {
+          "when": "05:00–06:30",
+          "what": {
+            "et": "Angkor Wati päikesetõus",
+            "en": "Angkor Wat sunrise"
+          }
+        },
+        {
+          "when": "11–15",
+          "what": {
+            "et": "Bassein, mitte templid",
+            "en": "Pool, not temples"
+          }
+        }
+      ],
+      "hotel": {
+        "name": "[Hotel name], Siem Reap",
+        "nameLocal": "សណ្ឋាគារ [ឈ្មោះ]",
+        "address": "[Street no.], near Old Market, Siem Reap",
+        "addressLocal": "ផ្លូវ [លេខ] ជិតផ្សារចាស់ ក្រុងសៀមរាប",
+        "phone": "+855 [number]",
+        "lat": 13.356,
+        "lng": 103.856,
+        "checkIn": "2026-12-29T14:00",
+        "checkOut": "2027-01-03T12:00",
+        "placeholder": true,
+        "hint": {
+          "et": "Vana turu lähedal",
+          "en": "Near the Old Market"
+        }
+      },
+      "placeholder": true
+    },
+    {
+      "id": "phnom-penh",
+      "name": "Phnom Penh",
+      "nameLocal": "ភ្នំពេញ",
+      "country": "KH",
+      "lat": 11.5564,
+      "lng": 104.9282,
+      "bbox": [
+        104.88,
+        11.52,
+        104.97,
+        11.66
+      ],
+      "arrive": "2027-01-03",
+      "depart": "2027-01-08",
+      "blurb": {
+        "et": "Jõeäärne pealinn. Ajalugu, turud ja Mekongi päikeseloojang.",
+        "en": "Riverside capital. History, markets and Mekong sunsets."
+      },
+      "bestTimes": [
+        {
+          "when": {
+            "et": "hommikul",
+            "en": "morning"
+          },
+          "what": {
+            "et": "Kuningapalee enne kuumust",
+            "en": "Royal Palace before the heat"
+          }
+        },
+        {
+          "when": {
+            "et": "päikeseloojang",
+            "en": "sunset"
+          },
+          "what": {
+            "et": "Sisowathi kaldapromenaad",
+            "en": "Sisowath Quay"
+          }
+        }
+      ],
+      "hotel": {
+        "name": "[Hotel name], Phnom Penh",
+        "nameLocal": "សណ្ឋាគារ [ឈ្មោះ]",
+        "address": "[Street no.], Daun Penh, Phnom Penh",
+        "addressLocal": "ផ្លូវ [លេខ] ខណ្ឌដូនពេញ រាជធានីភ្នំពេញ",
+        "phone": "+855 [number]",
+        "lat": 11.565,
+        "lng": 104.927,
+        "checkIn": "2027-01-03T14:00",
+        "checkOut": "2027-01-08T12:00",
+        "placeholder": true,
+        "hint": {
+          "et": "Jõe lähedal, palee põhja pool",
+          "en": "Near the river, north of the palace"
+        }
+      },
+      "placeholder": true
+    }
+  ],
+  "days": [
+    {
+      "date": "2026-12-16",
+      "stopId": "hanoi",
+      "title": {
+        "et": "Saabumine, järv ja õhtusöök",
+        "en": "Arrive, lake and dinner"
+      },
+      "items": [
+        {
+          "time": "17:00",
+          "placeId": "hanoi-hoan-kiem"
+        },
+        {
+          "time": "19:30",
+          "text": {
+            "et": "Esimene phở",
+            "en": "First phở"
+          }
+        }
+      ],
+      "placeholder": true
+    },
+    {
+      "date": "2026-12-17",
+      "stopId": "hanoi",
+      "title": {
+        "et": "Kirjanduse tempel ja vanalinn",
+        "en": "Temple of Literature and Old Quarter"
+      },
+      "items": [
+        {
+          "time": "08:00",
+          "placeId": "hanoi-temple-literature"
+        },
+        {
+          "time": "06:00",
+          "placeId": "hanoi-long-bien"
+        }
+      ],
+      "placeholder": true
+    },
+    {
+      "date": "2026-12-18",
+      "stopId": "ninh-binh",
+      "title": {
+        "et": "Auto Ninh Bìnhi, Hang Múa",
+        "en": "Car to Ninh Bình, Hang Múa"
+      },
+      "items": [
+        {
+          "time": "16:30",
+          "placeId": "nb-hang-mua"
+        }
+      ],
+      "placeholder": true
+    },
+    {
+      "date": "2026-12-19",
+      "stopId": "ninh-binh",
+      "title": {
+        "et": "Tràng An paadiga",
+        "en": "Tràng An by boat"
+      },
+      "items": [
+        {
+          "time": "07:30",
+          "placeId": "nb-trang-an"
+        },
+        {
+          "time": "14:00",
+          "placeId": "nb-am-tien"
+        }
+      ],
+      "placeholder": true
+    },
+    {
+      "date": "2026-12-20",
+      "stopId": "hoi-an",
+      "title": {
+        "et": "Lend Hà Nội → Đà Nẵng",
+        "en": "Fly Hà Nội → Đà Nẵng"
+      },
+      "items": [
+        {
+          "time": "18:30",
+          "placeId": "hoian-lanterns"
+        }
+      ],
+      "placeholder": true
+    },
+    {
+      "date": "2026-12-21",
+      "stopId": "hoi-an",
+      "title": {
+        "et": "Vanalinn jalgsi, külad rattaga",
+        "en": "Old town on foot, villages by bike"
+      },
+      "items": [
+        {
+          "time": "07:00",
+          "placeId": "hoian-chua-cau"
+        },
+        {
+          "time": "10:30",
+          "placeId": "hoian-tra-que"
+        },
+        {
+          "time": "18:30",
+          "placeId": "hoian-lanterns"
+        }
+      ],
+      "placeholder": true
+    },
+    {
+      "date": "2026-12-22",
+      "stopId": "hoi-an",
+      "title": {
+        "et": "Mỹ Sơn avamisel, siis rand",
+        "en": "Mỹ Sơn at opening, then the beach"
+      },
+      "items": [
+        {
+          "time": "06:30",
+          "placeId": "hoian-my-son"
+        },
+        {
+          "time": "15:00",
+          "placeId": "hoian-an-bang"
+        }
+      ],
+      "placeholder": true
+    },
+    {
+      "date": "2026-12-23",
+      "stopId": "hoi-an",
+      "title": {
+        "et": "Vaba päev",
+        "en": "Free day"
+      },
+      "items": [],
+      "placeholder": true,
+      "note": {
+        "et": "Rätsepa juurest läbi — või üldse mitte midagi.",
+        "en": "Drop by the tailor — or do nothing at all."
+      }
+    },
+    {
+      "date": "2026-12-24",
+      "stopId": "saigon",
+      "title": {
+        "et": "Lend Sài Gòni",
+        "en": "Fly to Sài Gòn"
+      },
+      "items": [
+        {
+          "time": "19:00",
+          "placeId": "saigon-ho-thi-ky"
+        }
+      ],
+      "placeholder": true
+    },
+    {
+      "date": "2026-12-25",
+      "stopId": "saigon",
+      "title": {
+        "et": "Sõjamuuseum ja Bến Thành",
+        "en": "War Remnants and Bến Thành"
+      },
+      "items": [
+        {
+          "time": "08:00",
+          "placeId": "saigon-war-remnants"
+        },
+        {
+          "time": "11:00",
+          "placeId": "saigon-ben-thanh"
+        },
+        {
+          "time": "16:00",
+          "placeId": "saigon-cafe-apartments"
+        }
+      ],
+      "placeholder": true
+    },
+    {
+      "date": "2026-12-26",
+      "stopId": "saigon",
+      "title": {
+        "et": "Vaba päev",
+        "en": "Free day"
+      },
+      "items": [],
+      "placeholder": true
+    },
+    {
+      "date": "2026-12-27",
+      "stopId": "can-tho",
+      "title": {
+        "et": "Auto Mekongi deltasse",
+        "en": "Car to the Mekong Delta"
+      },
+      "items": [
+        {
+          "time": "16:00",
+          "placeId": "cantho-binh-thuy"
+        }
+      ],
+      "placeholder": true
+    },
+    {
+      "date": "2026-12-28",
+      "stopId": "can-tho",
+      "title": {
+        "et": "Ujuvturg koidikul",
+        "en": "Floating market at dawn"
+      },
+      "items": [
+        {
+          "time": "05:30",
+          "placeId": "cantho-cai-rang"
+        }
+      ],
+      "placeholder": true
+    },
+    {
+      "date": "2026-12-29",
+      "stopId": "siem-reap",
+      "title": {
+        "et": "Lend Siem Reapi",
+        "en": "Fly to Siem Reap"
+      },
+      "items": [
+        {
+          "time": "19:00",
+          "placeId": "sr-phare"
+        }
+      ],
+      "placeholder": true
+    },
+    {
+      "date": "2026-12-30",
+      "stopId": "siem-reap",
+      "title": {
+        "et": "Angkor Wat päikesetõusul",
+        "en": "Angkor Wat at sunrise"
+      },
+      "items": [
+        {
+          "time": "05:00",
+          "placeId": "sr-angkor-wat"
+        },
+        {
+          "time": "09:00",
+          "placeId": "sr-bayon"
+        }
+      ],
+      "placeholder": true
+    },
+    {
+      "date": "2026-12-31",
+      "stopId": "siem-reap",
+      "title": {
+        "et": "Ta Prohm, aastavahetus",
+        "en": "Ta Prohm, New Year's Eve"
+      },
+      "items": [
+        {
+          "time": "07:00",
+          "placeId": "sr-ta-prohm"
+        }
+      ],
+      "placeholder": true
+    },
+    {
+      "date": "2027-01-01",
+      "stopId": "siem-reap",
+      "title": {
+        "et": "Vaba päev",
+        "en": "Free day"
+      },
+      "items": [],
+      "placeholder": true
+    },
+    {
+      "date": "2027-01-02",
+      "stopId": "siem-reap",
+      "title": {
+        "et": "Banteay Srei",
+        "en": "Banteay Srei"
+      },
+      "items": [
+        {
+          "time": "08:00",
+          "placeId": "sr-banteay-srei"
+        }
+      ],
+      "placeholder": true
+    },
+    {
+      "date": "2027-01-03",
+      "stopId": "phnom-penh",
+      "title": {
+        "et": "Buss Phnom Penhi",
+        "en": "Bus to Phnom Penh"
+      },
+      "items": [
+        {
+          "time": "18:00",
+          "text": {
+            "et": "Sisowathi kaldapromenaad",
+            "en": "Sisowath Quay"
+          }
+        }
+      ],
+      "placeholder": true
+    },
+    {
+      "date": "2027-01-04",
+      "stopId": "phnom-penh",
+      "title": {
+        "et": "Kuningapalee",
+        "en": "Royal Palace"
+      },
+      "items": [
+        {
+          "time": "08:00",
+          "placeId": "pp-royal-palace"
+        },
+        {
+          "time": "11:00",
+          "placeId": "pp-russian-market"
+        }
+      ],
+      "placeholder": true
+    },
+    {
+      "date": "2027-01-05",
+      "stopId": "phnom-penh",
+      "title": {
+        "et": "Tuol Sleng",
+        "en": "Tuol Sleng"
+      },
+      "items": [
+        {
+          "time": "08:30",
+          "placeId": "pp-tuol-sleng"
+        }
+      ],
+      "placeholder": true
+    },
+    {
+      "date": "2027-01-06",
+      "stopId": "phnom-penh",
+      "title": {
+        "et": "Siidisaar",
+        "en": "Silk Island"
+      },
+      "items": [
+        {
+          "time": "08:00",
+          "placeId": "pp-silk-island"
+        }
+      ],
+      "placeholder": true
+    },
+    {
+      "date": "2027-01-07",
+      "stopId": "phnom-penh",
+      "title": {
+        "et": "Vaba päev",
+        "en": "Free day"
+      },
+      "items": [],
+      "placeholder": true
+    },
+    {
+      "date": "2027-01-08",
+      "stopId": "phnom-penh",
+      "title": {
+        "et": "Kojusõit",
+        "en": "Fly home"
+      },
+      "items": [],
+      "placeholder": true,
+      "note": {
+        "et": "Lennujaama vähemalt 3 h enne lendu.",
+        "en": "At the airport at least 3 h before the flight."
+      }
+    }
+  ],
+  "transfers": [
+    {
+      "id": "hanoi-ninh-binh",
+      "date": "2026-12-18",
+      "time": "09:00",
+      "mode": "car",
+      "fromStopId": "hanoi",
+      "toStopId": "ninh-binh",
+      "detail": {
+        "et": "Auto, umbes 2 h",
+        "en": "Car, about 2 h"
+      },
+      "placeholder": true
+    },
+    {
+      "id": "ninh-binh-hoi-an",
+      "date": "2026-12-20",
+      "time": "10:05",
+      "mode": "flight",
+      "fromStopId": "ninh-binh",
+      "toStopId": "hoi-an",
+      "detail": {
+        "et": "[Lennu nr] Hà Nội → Đà Nẵng, autoga Hội Ani 45 min",
+        "en": "[Flight no.] Hà Nội → Đà Nẵng, car to Hội An 45 min"
+      },
+      "placeholder": true
+    },
+    {
+      "id": "hoi-an-saigon",
+      "date": "2026-12-24",
+      "time": "09:15",
+      "mode": "car",
+      "fromStopId": "hoi-an",
+      "toStopId": "saigon",
+      "detail": {
+        "et": "→ Đà Nẵngi lennujaam, [lennu nr] Sài Gòni",
+        "en": "→ Đà Nẵng airport, [flight no.] to Sài Gòn"
+      },
+      "placeholder": true
+    },
+    {
+      "id": "saigon-can-tho",
+      "date": "2026-12-27",
+      "time": "08:00",
+      "mode": "car",
+      "fromStopId": "saigon",
+      "toStopId": "can-tho",
+      "detail": {
+        "et": "Auto, umbes 3,5 h",
+        "en": "Car, about 3.5 h"
+      },
+      "placeholder": true
+    },
+    {
+      "id": "can-tho-siem-reap",
+      "date": "2026-12-29",
+      "time": "10:00",
+      "mode": "flight",
+      "fromStopId": "can-tho",
+      "toStopId": "siem-reap",
+      "detail": {
+        "et": "Sài Gòni kaudu, [lennu nr]",
+        "en": "Via Sài Gòn, [flight no.]"
+      },
+      "placeholder": true
+    },
+    {
+      "id": "siem-reap-phnom-penh",
+      "date": "2027-01-03",
+      "time": "08:30",
+      "mode": "bus",
+      "fromStopId": "siem-reap",
+      "toStopId": "phnom-penh",
+      "detail": {
+        "et": "Buss, umbes 6 h",
+        "en": "Bus, about 6 h"
+      },
+      "placeholder": true
+    }
+  ]
+}

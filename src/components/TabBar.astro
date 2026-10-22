@@ -1,0 +1,41 @@
+---
+import T from './T.astro';
+import type { UiKey } from '../i18n/ui';
+
+const tabs: { href: string; key: UiKey; icon: string }[] = [
+  { href: '/', key: 'tab.today', icon: 'M12 7a5 5 0 1 0 0 10 5 5 0 0 0 0-10Zm0-5v2m0 16v2M4.9 4.9l1.4 1.4m11.4 11.4 1.4 1.4M2 12h2m16 0h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4' },
+  { href: '/map/', key: 'tab.map', icon: 'M9 4 3 6v14l6-2 6 2 6-2V4l-6 2-6-2Zm0 0v14m6-12v14' },
+  { href: '/plan/', key: 'tab.plan', icon: 'M4 6h16v14H4zM4 10h16M8 3v5m8-5v5' },
+  { href: '/wishlist/', key: 'tab.wishlist', icon: 'M6 3h12v18l-6-5-6 5Z' },
+  { href: '/kit/', key: 'tab.kit', icon: 'M8 8V6a4 4 0 0 1 8 0v2m-9 0h10a2 2 0 0 1 2 2v9a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2v-9a2 2 0 0 1 2-2Zm3 6h4' },
+];
+const path = Astro.url.pathname;
+const isActive = (href: string) => (href === '/' ? path === '/' : path.startsWith(href));
+---
+<nav class="tabbar" aria-label="Tabs">
+  {tabs.map((tab) => (
+    <a href={tab.href} class:list={['tab', { active: isActive(tab.href) }]} aria-current={isActive(tab.href) ? 'page' : undefined}>
+      <svg viewBox="0 0 24 24" width="24" height="24" aria-hidden="true"><path d={tab.icon} /></svg>
+      <span><T k={tab.key} /></span>
+    </a>
+  ))}
+</nav>
+
+<style>
+  .tabbar {
+    position: fixed; left: 0; right: 0; bottom: 0; z-index: 50;
+    display: grid; grid-template-columns: repeat(5, 1fr); gap: 4px;
+    padding: 8px 8px calc(8px + env(safe-area-inset-bottom));
+    background: var(--card); border-top: 2px solid var(--line);
+  }
+  .tab {
+    min-height: 60px; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 4px;
+    border-radius: var(--radius); text-decoration: none; font-size: 13px; font-weight: 700; color: var(--ink);
+  }
+  .tab svg { fill: none; stroke: currentColor; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round; }
+  /* Active = filled ink pill, not a colour tint (readable in glare). */
+  .tab.active { background: var(--ink); color: var(--on-ink); }
+  @media (min-width: 900px) {
+    .tabbar { max-width: 720px; margin: 0 auto; bottom: 12px; border: 2px solid var(--line); border-radius: var(--radius-lg); }
+  }
+</style>

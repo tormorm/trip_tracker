@@ -1,0 +1,250 @@
+{
+  "countries": [
+    {
+      "country": "VN",
+      "footnote": {
+        "et": "k = tuhat đồngi. Hinnangulised — kontrolli kohapeal.",
+        "en": "k = thousand đồng. Estimates — verify locally."
+      },
+      "categories": [
+        {
+          "id": "food",
+          "name": {
+            "et": "Söök ja jook",
+            "en": "Food & drink"
+          },
+          "items": [
+            {
+              "item": "Bánh mì",
+              "asking": "40–60k",
+              "fair": "25–35k",
+              "placeholder": true,
+              "detail": {
+                "et": "Täidetud baguette",
+                "en": "Filled baguette"
+              }
+            },
+            {
+              "item": "Phở / bún bò",
+              "asking": "80–120k",
+              "fair": "40–70k",
+              "placeholder": true,
+              "detail": {
+                "et": "Nuudlisupp, üks kauss",
+                "en": "Noodle soup, one bowl"
+              }
+            },
+            {
+              "item": "Cà phê sữa đá",
+              "asking": "40–60k",
+              "fair": "20–35k",
+              "placeholder": true,
+              "detail": {
+                "et": "Jääkohv kondenspiimaga",
+                "en": "Iced coffee with condensed milk"
+              }
+            },
+            {
+              "item": "Bia hơi",
+              "asking": "30–40k",
+              "fair": "10–20k",
+              "placeholder": true,
+              "detail": {
+                "et": "Värske vaadiõlu",
+                "en": "Fresh draught beer"
+              }
+            },
+            {
+              "item": {
+                "et": "Kookospähkel",
+                "en": "Coconut"
+              },
+              "asking": "50k",
+              "fair": "20–30k",
+              "placeholder": true
+            }
+          ]
+        },
+        {
+          "id": "transport",
+          "name": {
+            "et": "Transport",
+            "en": "Transport"
+          },
+          "items": [
+            {
+              "item": {
+                "et": "Grab-mopeed, 3 km",
+                "en": "Grab motorbike, 3 km"
+              },
+              "asking": "80–100k",
+              "fair": "25–40k",
+              "placeholder": true,
+              "detail": {
+                "et": "Äpi hind — lepi enne kokku",
+                "en": "App price — agree before riding"
+              }
+            },
+            {
+              "item": {
+                "et": "Grab-auto, 5 km",
+                "en": "Grab car, 5 km"
+              },
+              "asking": "150–200k",
+              "fair": "60–100k",
+              "placeholder": true
+            },
+            {
+              "item": {
+                "et": "Ratta rent, päev",
+                "en": "Bike rental, day"
+              },
+              "asking": "80k",
+              "fair": "30–50k",
+              "placeholder": true
+            }
+          ]
+        },
+        {
+          "id": "other",
+          "name": {
+            "et": "Muu",
+            "en": "Other"
+          },
+          "items": [
+            {
+              "item": {
+                "et": "Pesu, 1 kg",
+                "en": "Laundry, 1 kg"
+              },
+              "asking": "60k",
+              "fair": "25–40k",
+              "placeholder": true
+            },
+            {
+              "item": {
+                "et": "Rätsep: särk",
+                "en": "Tailor: shirt"
+              },
+              "asking": "600k+",
+              "fair": "250–400k",
+              "placeholder": true
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "country": "KH",
+      "footnote": {
+        "et": "Hinnad USD-s; alla $1 tagasi rielides (≈ 4000 ៛ = $1). Hinnangulised — kontrolli kohapeal.",
+        "en": "Prices in USD; change under $1 comes in riel (≈ 4000 ៛ = $1). Estimates — verify locally."
+      },
+      "categories": [
+        {
+          "id": "food",
+          "name": {
+            "et": "Söök ja jook",
+            "en": "Food & drink"
+          },
+          "items": [
+            {
+              "item": {
+                "et": "Nuudlisupp",
+                "en": "Noodle soup"
+              },
+              "asking": "$4",
+              "fair": "$1.5–2.5",
+              "placeholder": true
+            },
+            {
+              "item": {
+                "et": "Vaadiõlu",
+                "en": "Draught beer"
+              },
+              "asking": "$3",
+              "fair": "$0.5–1.5",
+              "placeholder": true
+            },
+            {
+              "item": {
+                "et": "Kookospähkel",
+                "en": "Coconut"
+              },
+              "asking": "$2–3",
+              "fair": "$1",
+              "placeholder": true
+            }
+          ]
+        },
+        {
+          "id": "transport",
+          "name": {
+            "et": "Transport",
+            "en": "Transport"
+          },
+          "items": [
+            {
+              "item": {
+                "et": "Tuk-tuk linnas",
+                "en": "Tuk-tuk in town"
+              },
+              "asking": "$5",
+              "fair": "$2–3",
+              "placeholder": true,
+              "detail": {
+                "et": "Lepi enne kokku",
+                "en": "Agree before riding"
+              }
+            },
+            {
+              "item": {
+                "et": "Tuk-tuk, Angkori päev",
+                "en": "Tuk-tuk, Angkor day"
+              },
+              "asking": "$30",
+              "fair": "$15–20",
+              "placeholder": true
+            },
+            {
+              "item": {
+                "et": "Grab/PassApp, 3 km",
+                "en": "Grab/PassApp, 3 km"
+              },
+              "asking": "$4",
+              "fair": "$1.5–2.5",
+              "placeholder": true
+            }
+          ]
+        },
+        {
+          "id": "other",
+          "name": {
+            "et": "Muu",
+            "en": "Other"
+          },
+          "items": [
+            {
+              "item": {
+                "et": "Pesu, 1 kg",
+                "en": "Laundry, 1 kg"
+              },
+              "asking": "$3",
+              "fair": "$1–1.5",
+              "placeholder": true
+            },
+            {
+              "item": {
+                "et": "Krama sall",
+                "en": "Krama scarf"
+              },
+              "asking": "$8",
+              "fair": "$2–4",
+              "placeholder": true
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

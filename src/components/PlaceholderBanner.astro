@@ -1,0 +1,13 @@
+---
+import T from './T.astro';
+import { showPlaceholderBanner } from '../lib/data';
+---
+{showPlaceholderBanner && <div class="ph-banner" role="note"><T k="banner.placeholder" /></div>}
+
+<style>
+  .ph-banner {
+    background: repeating-linear-gradient(-45deg, var(--laterite) 0 12px, #d8682c 12px 24px);
+    color: #1b1915; text-align: center; font-weight: 800; font-size: 12px; letter-spacing: 0.08em;
+    padding: 6px 12px; padding-top: calc(6px + env(safe-area-inset-top));
+  }
+</style>

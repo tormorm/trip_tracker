@@ -3,6 +3,7 @@ import Base from '../../layouts/Base.astro';
 import T from '../../components/T.astro';
 import LangToggle from '../../components/LangToggle.astro';
 import MarkToday from '../../components/MarkToday.astro';
+import SaveOffline from '../../components/SaveOffline.astro';
 import { trip, places } from '../../lib/data';
 import type { Stop } from '../../data/schema';
 import { fmtRange, fmtDay, fmtWeekday } from '../../lib/time';
@@ -99,6 +100,8 @@ const [outDate, outTime] = h.checkOut.split('T');
         </tbody>
       </table>
     </section>
+
+    <SaveOffline stop={stop} />
   </main>
   <MarkToday />
 </Base>

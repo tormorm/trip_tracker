@@ -2,7 +2,9 @@
 import '../styles/global.css';
 import TabBar from '../components/TabBar.astro';
 import PlaceholderBanner from '../components/PlaceholderBanner.astro';
+import NamePicker from '../components/react/NamePicker';
 import { DEFAULT_LANG } from '../i18n/ui';
+import { trip } from '../lib/data';
 
 interface Props {
   title: string;
@@ -10,8 +12,10 @@ interface Props {
   tabs?: boolean;
   /** Full-height app screen (map): no page scroll. */
   fullscreen?: boolean;
+  /** Cards shown to strangers (driver, lost) skip the placeholder banner. */
+  banner?: boolean;
 }
-const { title, tabs = true, fullscreen = false } = Astro.props;
+const { title, tabs = true, fullscreen = false, banner = true } = Astro.props;
 ---
 <!doctype html>
 <html lang={DEFAULT_LANG} data-lang={DEFAULT_LANG}>
@@ -22,6 +26,13 @@ const { title, tabs = true, fullscreen = false } = Astro.props;
     <meta name="theme-color" content="#f3eadb" media="(prefers-color-scheme: light)" />
     <meta name="theme-color" content="#14120e" media="(prefers-color-scheme: dark)" />
     <title>{title}</title>
+    <link rel="manifest" href="/manifest.webmanifest" crossorigin="use-credentials" />
+    <link rel="icon" href="/favicon.png" type="image/png" />
+    <link rel="apple-touch-icon" href="/icons/apple-touch-icon.png" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="default" />
+    <meta name="apple-mobile-web-app-title" content="Reis" />
     <script is:inline>
       try {
         var l = localStorage.getItem('tc.lang');
@@ -34,8 +45,16 @@ const { title, tabs = true, fullscreen = false } = Astro.props;
     </script>
   </head>
   <body class:list={{ fullscreen }}>
-    <PlaceholderBanner />
+    {banner && <PlaceholderBanner />}
     <slot />
     {tabs && <TabBar />}
+    <script>
+      import { startSync } from '../lib/pins';
+      startSync();
+      if (import.meta.env.PROD && 'serviceWorker' in navigator) {
+        navigator.serviceWorker.register('/sw.js', { scope: '/' }).catch(() => {});
+      }
+    </script>
+    {tabs && <NamePicker client:idle travellers={trip.travellers.map(({ id, name, color }) => ({ id, name, color }))} />}
   </body>
 </html>

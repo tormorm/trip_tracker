@@ -1,14 +1,15 @@
 ---
 import Base from '../../layouts/Base.astro';
-import T from '../../components/T.astro';
 import LangToggle from '../../components/LangToggle.astro';
+import WishlistView from '../../components/react/WishlistView';
+import { trip } from '../../lib/data';
+
+const stops = trip.stops.map(({ id, name, lat, lng, arrive, depart }) => ({ id, name, lat, lng, arrive, depart }));
+const travellers = trip.travellers.map(({ name, color }) => ({ name, color }));
 ---
-<Base title="Soovid">
+<Base title="Soovid · Wishlist">
   <main class="page">
-    <header style="display:flex;justify-content:space-between;align-items:center;gap:12px">
-      <h1 class="serif" style="font-size:40px"><T k="tab.wishlist" /></h1>
-      <LangToggle />
-    </header>
-    <p class="muted"><T k="stub.soon" /></p>
+    <div class="corner"><LangToggle /></div>
+    <WishlistView client:load travellers={travellers} stops={stops} startDate={trip.startDate} endDate={trip.endDate} />
   </main>
 </Base>

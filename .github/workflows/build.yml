@@ -1,0 +1,43 @@
+# Builds the site on every push to main and commits the result (dist/) to the
+# `deploy` branch. Plesk's Git extension pulls `deploy` into httpdocs/.
+name: Build site
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: build-site
+  cancel-in-progress: true
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+      - run: npm ci
+      - run: npm run build
+      - name: Commit dist/ to the deploy branch
+        run: |
+          git config user.name "github-actions"
+          git config user.email "github-actions@users.noreply.github.com"
+          if git ls-remote --exit-code --heads origin deploy >/dev/null; then
+            git fetch --depth=1 origin deploy
+            git worktree add -B deploy out FETCH_HEAD
+          else
+            git worktree add --orphan -b deploy out
+          fi
+          rsync -a --delete --exclude .git dist/ out/
+          cd out
+          git add -A
+          if git diff --cached --quiet; then echo "No changes."; exit 0; fi
+          git commit -m "Build ${GITHUB_SHA::7}"
+          git push origin deploy

@@ -2,13 +2,274 @@
 import Base from '../../layouts/Base.astro';
 import T from '../../components/T.astro';
 import LangToggle from '../../components/LangToggle.astro';
+import StopsData from '../../components/StopsData.astro';
+import { trip, prices, banknotes, phrases, emergency } from '../../lib/data';
+import { telHref } from '../../lib/trip';
+
+const countries = [
+  { code: 'VN' as const, lang: 'vi' as const, label: { et: 'Vietnam · ₫', en: 'Vietnam · ₫' } },
+  { code: 'KH' as const, lang: 'km' as const, label: { et: 'Kambodža · $ / ៛', en: 'Cambodia · $ / ៛' } },
+];
 ---
-<Base title="Abi">
-  <main class="page">
-    <header style="display:flex;justify-content:space-between;align-items:center;gap:12px">
-      <h1 class="serif" style="font-size:40px"><T k="tab.kit" /></h1>
-      <LangToggle />
-    </header>
-    <p class="muted"><T k="stub.soon" /></p>
+<Base title="Abi · Kit">
+  <main class="page kit" data-country="VN">
+    <div class="corner"><LangToggle /></div>
+    <h1 class="serif title"><T k="tab.kit" /></h1>
+    <p class="offline-note"><span class="dot" /> <T k="kit.offline" /></p>
+
+    <nav class="quick">
+      <a class="btn btn-primary" href="#emergency"><span class="ic">＋</span><T k="kit.emergency" /></a>
+      <a class="btn btn-ink" data-hotel-link="/lost/" href="/lost/"><span class="ic">?</span><T k="kit.lost" /></a>
+      <a class="btn" data-hotel-link="/driver/" href="/driver/"><T k="today.driver" /></a>
+      <a class="btn" href="#phrases"><T k="kit.phrases" /></a>
+    </nav>
+
+    <div class="me card">
+      <span><T k="kit.me" />: <strong data-me><T k="kit.nobody" /></strong></span>
+      <button type="button" class="btn" data-pick-name><T k="kit.change" /></button>
+    </div>
+
+    <div class="seg" role="tablist">
+      {countries.map((c) => <button type="button" role="tab" data-set-country={c.code}><T v={c.label} /></button>)}
+    </div>
+
+    {prices.countries.map((pc) => (
+      <section class="card prices" data-only={pc.country}>
+        <header class="card-head">
+          <h2><T k="kit.prices" /></h2>
+          <span class="muted small"><T k="kit.pricesSub" /></span>
+        </header>
+        {pc.categories.map((cat) => (
+          <>
+            <p class="cat label"><T v={cat.name} /></p>
+            {cat.items.map((i) => (
+              <div class="price-row">
+                <div>
+                  <strong><T v={i.item} /></strong>
+                  {i.detail && <small><T v={i.detail} /></small>}
+                  <small class="ask"><T k="kit.asking" /> {i.asking}</small>
+                </div>
+                <span class="fair">{i.fair}</span>
+              </div>
+            ))}
+          </>
+        ))}
+        <p class="foot small"><T v={pc.footnote} /> <strong class="verify"><T k="kit.verify" /></strong></p>
+      </section>
+    ))}
+
+    <h2 class="h"><T k="kit.banknotes" /></h2>
+    {banknotes.countries.map((bc) => {
+      const look = new Set(bc.lookalikes.flatMap((l) => l.ids));
+      return (
+        <section data-only={bc.country}>
+          {bc.note && <p class="note-box"><T v={bc.note} /></p>}
+          {bc.lookalikes.map((l) => <p class="warn"><strong><T k="kit.careful" /></strong> <T v={l.warning} /></p>)}
+          <div class="notes">
+            {bc.notes.map((n) => (
+              <div class:list={['bn', { look: look.has(n.id) }]}>
+                {n.image ? <img src={n.image} alt="" loading="lazy" /> : <span class="swatch" style={`background:${n.color}`} />}
+                <div class="bn-body">
+                  <strong>{n.label} <u>{bc.symbol}</u></strong>
+                  <small><T v={n.colorName} />{n.approx && ` · ${n.approx}`}</small>
+                  {look.has(n.id) && <span class="look-badge">≈ <T k="kit.lookalike" /></span>}
+                </div>
+              </div>
+            ))}
+          </div>
+        </section>
+      );
+    })}
+
+    <section id="phrases" class="card phrasebook">
+      <header class="card-head">
+        <h2><T k="kit.phrasebook" /></h2>
+        <span class="muted small"><T k="kit.tapToEnlarge" /></span>
+      </header>
+      {countries.map((c) => (
+        <div data-only={c.code}>
+          {phrases.phrases.map((p) => (
+            <button type="button" class="phrase" data-big={p[c.lang].text} data-big-lang={c.lang}>
+              <span class="ph-local" lang={c.lang}>{p[c.lang].text}</span>
+              <small><T v={p.meaning} /> · <T v={p[c.lang].say} /></small>
+            </button>
+          ))}
+          <p class="cat label"><T k="kit.numbers" /></p>
+          <div class="nums">
+            {phrases.numbers.map((n) => (
+              <button type="button" class="num" data-big={`${n.n} · ${n[c.lang].text}`} data-big-lang={c.lang}>
+                <b>{n.n}</b>
+                <span lang={c.lang}>{n[c.lang].text}</span>
+                <small><T v={n[c.lang].say} /></small>
+              </button>
+            ))}
+          </div>
+        </div>
+      ))}
+    </section>
+
+    <section id="emergency" class="emergency">
+      <h2 class="h"><T k="kit.emergencyNumbers" /></h2>
+      {emergency.countries.map((ec) => (
+        <div class="em-country">
+          <p class="label"><T k={`country.${ec.country}`} /></p>
+          <div class="em-grid">
+            {ec.numbers.map((n) => (
+              <a class="em-num" href={telHref(n.number)}><b>{n.number}</b><small><T v={n.label} /></small></a>
+            ))}
+          </div>
+        </div>
+      ))}
+
+      <h3 class="h3"><T k="kit.lostContact" /></h3>
+      <a class="line" href={telHref(emergency.lostContact.phone)}><span>{emergency.lostContact.name}</span><b>{emergency.lostContact.phone}</b></a>
+
+      <h3 class="h3"><T k="kit.insurance" /></h3>
+      <a class="line" href={telHref(emergency.insurance.phone)}>
+        <span>{emergency.insurance.provider} · <T k="kit.policy" /> {emergency.insurance.policy}</span><b>{emergency.insurance.phone}</b>
+      </a>
+      {emergency.insurance.note && <p class="small muted"><T v={emergency.insurance.note} /></p>}
+
+      <h3 class="h3"><T k="kit.embassies" /></h3>
+      {emergency.embassies.map((e) => (
+        <div class="emb">
+          <strong><T v={e.name} /></strong>
+          <p class="small">{e.address}</p>
+          <p class="small"><a href={telHref(e.phone)}>{e.phone}</a>{e.email && <> · <a href={`mailto:${e.email}`}>{e.email}</a></>}</p>
+          {e.note && <p class="small muted"><T v={e.note} /></p>}
+        </div>
+      ))}
+
+      <h3 class="h3"><T k="kit.hotelPhones" /></h3>
+      {trip.stops.map((s) => (
+        <a class="line" href={telHref(s.hotel.phone)}><span><b>{s.name}</b> · {s.hotel.name}</span><b>{s.hotel.phone}</b></a>
+      ))}
+    </section>
+
+    <p class="tip"><T k="kit.tip" /></p>
+
+    <dialog id="big" class="big-dialog">
+      <form method="dialog"><button class="big-close" aria-label="Sulge / Close">×</button></form>
+      <p class="big-text" />
+    </dialog>
   </main>
+  <StopsData />
 </Base>
+
+<script>
+  import { readStopsData } from '../../lib/hotelPicker';
+  import { defaultStopId } from '../../lib/trip';
+  import { tripNow } from '../../lib/time';
+
+  const kit = document.querySelector<HTMLElement>('.kit')!;
+  const data = readStopsData();
+  const stopId = defaultStopId(data as any, tripNow().date);
+  const KEY = 'tc.kitCountry';
+  const setCountry = (c: string, save = true) => {
+    kit.dataset.country = c;
+    document.querySelectorAll<HTMLElement>('[data-set-country]').forEach((b) => b.setAttribute('aria-selected', String(b.dataset.setCountry === c)));
+    if (save) try { sessionStorage.setItem(KEY, c); } catch {}
+  };
+  let initial = data.stops.find((s) => s.id === stopId)?.country ?? 'VN';
+  try { initial = (sessionStorage.getItem(KEY) as typeof initial) ?? initial; } catch {}
+  setCountry(initial, false);
+  document.querySelectorAll<HTMLElement>('[data-set-country]').forEach((b) => b.addEventListener('click', () => setCountry(b.dataset.setCountry!)));
+
+  // Cards open on tonight's hotel.
+  document.querySelectorAll<HTMLAnchorElement>('[data-hotel-link]').forEach((a) => (a.href = `${a.dataset.hotelLink}?hotel=${stopId}`));
+
+  // Who am I
+  const showName = () => {
+    let n: string | null = null;
+    try { n = localStorage.getItem('tc.name'); } catch {}
+    if (n) document.querySelectorAll('[data-me]').forEach((el) => (el.textContent = n));
+  };
+  showName();
+  addEventListener('tc:name', showName);
+  document.querySelector('[data-pick-name]')?.addEventListener('click', () => dispatchEvent(new Event('tc:pick-name')));
+
+  // Phrase enlarge
+  const dlg = document.getElementById('big') as HTMLDialogElement;
+  const text = dlg.querySelector<HTMLElement>('.big-text')!;
+  document.querySelectorAll<HTMLElement>('[data-big]').forEach((b) =>
+    b.addEventListener('click', () => {
+      text.textContent = b.dataset.big!;
+      text.lang = b.dataset.bigLang!;
+      dlg.showModal();
+    }),
+  );
+  dlg.addEventListener('click', (e) => e.target === dlg && dlg.close());
+</script>
+
+<style>
+  .title { font-size: 44px; margin-top: 6px; }
+  .offline-note { display: flex; align-items: center; gap: 6px; margin: 4px 0 16px; font-size: 13px; font-weight: 700; color: var(--ink-2); }
+  .dot { width: 8px; height: 8px; border-radius: 50%; border: 2px solid currentColor; }
+  .quick { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+  .quick .btn { min-height: 76px; border-radius: var(--radius-lg); justify-content: flex-start; padding: 0 18px; text-align: left; line-height: 1.15; }
+  .ic { font-size: 22px; }
+  .me { display: flex; align-items: center; justify-content: space-between; gap: 10px; padding: 8px 8px 8px 14px; margin: 14px 0; }
+  .me .btn { min-height: 44px; font-size: 15px; padding: 0 14px; }
+  .seg { display: grid; grid-template-columns: 1fr 1fr; background: var(--fill); border-radius: var(--radius); padding: 4px; margin: 14px 0; }
+  .seg button { min-height: 48px; border: 0; border-radius: 10px; background: none; font-weight: 800; cursor: pointer; }
+  .seg button[aria-selected='true'] { background: var(--ink); color: var(--on-ink); }
+  .kit[data-country='VN'] [data-only='KH'], .kit[data-country='KH'] [data-only='VN'] { display: none; }
+
+  .card-head { display: flex; justify-content: space-between; align-items: baseline; gap: 12px; padding: 12px 14px; border-bottom: 1.5px solid var(--hair); }
+  .card-head h2 { font-size: 20px; font-weight: 800; }
+  .small { font-size: 13px; }
+  .prices, .phrasebook { margin-bottom: 18px; overflow: hidden; }
+  .cat { margin: 0; padding: 10px 14px 2px; color: var(--ink-2); font-size: 12px; }
+  .price-row { display: flex; justify-content: space-between; align-items: center; gap: 12px; padding: 10px 14px; border-bottom: 1.5px solid var(--hair); }
+  .price-row div { display: flex; flex-direction: column; }
+  .price-row small { color: var(--ink-2); font-size: 13px; }
+  .price-row .ask { font-size: 12px; }
+  .fair { font-size: 22px; font-weight: 800; white-space: nowrap; font-variant-numeric: tabular-nums; }
+  .foot { padding: 10px 14px; margin: 0; color: var(--ink-2); }
+  .verify { color: var(--lacquer); }
+
+  .h { font-size: 20px; font-weight: 800; margin: 22px 0 10px; }
+  .h3 { font-size: 16px; font-weight: 800; margin: 18px 0 6px; }
+  .note-box { background: var(--fill); border-radius: var(--radius); padding: 10px 14px; margin: 0 0 10px; font-weight: 600; }
+  .warn { background: var(--ink); color: var(--on-ink); border-radius: var(--radius); padding: 12px 14px; margin: 0 0 10px; font-weight: 600; }
+  .warn strong { color: var(--laterite); }
+  .notes { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-bottom: 18px; }
+  .bn { background: var(--card); border: 1.5px solid var(--hair); border-radius: var(--radius); overflow: hidden; }
+  .bn.look { border: 2.5px solid var(--laterite); }
+  .swatch { display: block; height: 16px; }
+  .bn img { display: block; width: 100%; aspect-ratio: 2 / 1; object-fit: cover; }
+  .bn-body { padding: 8px 12px 12px; display: flex; flex-direction: column; }
+  .bn-body strong { font-size: 22px; font-weight: 800; }
+  .bn-body small { color: var(--ink-2); font-size: 13px; }
+  .look-badge { align-self: flex-start; margin-top: 4px; font-size: 11px; font-weight: 800; text-transform: uppercase; letter-spacing: 0.06em; background: var(--laterite); color: #1b1915; border-radius: 4px; padding: 1px 6px; }
+
+  .phrase { display: flex; flex-direction: column; align-items: flex-start; width: 100%; min-height: var(--tap); padding: 10px 14px; border: 0; border-bottom: 1.5px solid var(--hair); background: none; text-align: left; cursor: pointer; }
+  .ph-local { font-size: 24px; font-weight: 800; line-height: 1.3; }
+  .ph-local:lang(km) { line-height: 1.6; }
+  .phrase small { color: var(--ink-2); font-size: 13px; }
+  .nums { display: grid; grid-template-columns: repeat(5, 1fr); gap: 6px; padding: 6px 14px 14px; }
+  .num { display: flex; flex-direction: column; align-items: center; min-height: 64px; padding: 6px 2px; border: 1.5px solid var(--hair); border-radius: 10px; background: var(--paper); cursor: pointer; }
+  .num b { font-size: 18px; }
+  .num span { font-size: 13px; font-weight: 700; }
+  .num small { font-size: 11px; color: var(--ink-2); }
+
+  .em-country { margin-bottom: 10px; }
+  .em-country .label { color: var(--ink-2); margin: 0 0 6px; }
+  .em-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; }
+  .em-num { display: flex; flex-direction: column; align-items: center; justify-content: center; min-height: 72px; border-radius: var(--radius); background: var(--lacquer); color: var(--lacquer-ink); text-decoration: none; }
+  .em-num b { font-size: 28px; }
+  .em-num small { font-size: 13px; font-weight: 700; }
+  .line { display: flex; justify-content: space-between; align-items: center; gap: 12px; min-height: var(--tap); padding: 8px 0; border-bottom: 1.5px solid var(--hair); text-decoration: none; }
+  .line span { font-size: 15px; }
+  .line b { white-space: nowrap; }
+  .emb { padding: 6px 0 10px; border-bottom: 1.5px solid var(--hair); }
+  .emb p { margin: 2px 0; }
+  .tip { margin: 24px 0 0; padding: 12px 14px; border: 1.5px dashed var(--hair); border-radius: var(--radius); font-weight: 600; }
+
+  .big-dialog { border: 0; padding: 0; width: 100vw; height: 100dvh; max-width: none; max-height: none; background: #fff; color: #000; }
+  .big-dialog::backdrop { background: rgba(0, 0, 0, 0.5); }
+  .big-close { position: absolute; top: 12px; right: 12px; width: 56px; height: 56px; border: 0; background: none; font-size: 40px; cursor: pointer; color: inherit; }
+  .big-text { display: grid; place-items: center; height: 100%; margin: 0; padding: 24px; text-align: center; font-size: clamp(48px, 16vw, 96px); font-weight: 800; line-height: 1.25; }
+  .big-text:lang(km) { font-family: var(--font-km); line-height: 1.6; }
+  @media (prefers-color-scheme: dark) { .big-dialog { background: #000; color: #fff; } }
+</style>

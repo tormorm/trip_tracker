@@ -1,0 +1,17 @@
+---
+import Base from '../../layouts/Base.astro';
+import Beacon from '../../components/react/Beacon';
+import { trip } from '../../lib/data';
+
+const data = {
+  startDate: trip.startDate,
+  endDate: trip.endDate,
+  stops: trip.stops.map(({ id, arrive, depart, lat, lng, name, country, hotel }) => ({
+    id, arrive, depart, lat, lng, name, country,
+    hotel: { name: hotel.name, lat: hotel.lat, lng: hotel.lng },
+  })),
+};
+---
+<Base title="Majakas · Beacon" tabs={false} banner={false}>
+  <Beacon client:only="react" data={data} />
+</Base>

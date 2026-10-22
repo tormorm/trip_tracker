@@ -18,6 +18,9 @@ export function protomapsStyle(pmtilesUrl: string, dark: boolean): StyleSpecific
   const kind = (...k: string[]) => ['in', ['get', 'kind'], ['literal', k]] as any;
   const w = (z10: number, z16: number) => ['interpolate', ['exponential', 1.6], ['zoom'], 10, z10, 16, z16] as any;
   const font = ['Noto Sans Regular'];
+  // MapLibre can't shape Khmer script, so prefer English names; Vietnamese
+  // streets usually have no English name and keep their own (Latin) one.
+  const label = ['coalesce', ['get', 'name:en'], ['get', 'name']] as any;
   return {
     version: 8,
     glyphs: new URL(MAP.glyphs, location.origin).href.replace(/%7B/g, '{').replace(/%7D/g, '}'),
@@ -39,8 +42,8 @@ export function protomapsStyle(pmtilesUrl: string, dark: boolean): StyleSpecific
       { id: 'road-minor', type: 'line', source: 'pm', 'source-layer': 'roads', minzoom: 12, filter: kind('minor_road', 'other'), layout: { 'line-cap': 'round', 'line-join': 'round' }, paint: { 'line-color': c.road, 'line-width': w(0.5, 7) } },
       { id: 'road-major', type: 'line', source: 'pm', 'source-layer': 'roads', filter: kind('major_road'), layout: { 'line-cap': 'round', 'line-join': 'round' }, paint: { 'line-color': c.major, 'line-width': w(1.5, 11) } },
       { id: 'road-highway', type: 'line', source: 'pm', 'source-layer': 'roads', filter: kind('highway'), layout: { 'line-cap': 'round', 'line-join': 'round' }, paint: { 'line-color': c.highway, 'line-width': w(2, 12) } },
-      { id: 'road-label', type: 'symbol', source: 'pm', 'source-layer': 'roads', minzoom: 14, filter: kind('major_road', 'minor_road'), layout: { 'symbol-placement': 'line', 'text-field': ['get', 'name'], 'text-font': font, 'text-size': 12 }, paint: { 'text-color': c.minorLabel, 'text-halo-color': c.halo, 'text-halo-width': 1.5 } },
-      { id: 'place-label', type: 'symbol', source: 'pm', 'source-layer': 'places', filter: kind('locality', 'neighbourhood', 'macrohood', 'region', 'country'), layout: { 'text-field': ['get', 'name'], 'text-font': font, 'text-size': ['match', ['get', 'kind'], 'country', 15, 'locality', 14, 12], 'text-max-width': 8 }, paint: { 'text-color': c.label, 'text-halo-color': c.halo, 'text-halo-width': 2 } },
+      { id: 'road-label', type: 'symbol', source: 'pm', 'source-layer': 'roads', minzoom: 14, filter: kind('major_road', 'minor_road'), layout: { 'symbol-placement': 'line', 'text-field': label, 'text-font': font, 'text-size': 12 }, paint: { 'text-color': c.minorLabel, 'text-halo-color': c.halo, 'text-halo-width': 1.5 } },
+      { id: 'place-label', type: 'symbol', source: 'pm', 'source-layer': 'places', filter: kind('locality', 'neighbourhood', 'macrohood', 'region', 'country'), layout: { 'text-field': label, 'text-font': font, 'text-size': ['match', ['get', 'kind'], 'country', 15, 'locality', 14, 12], 'text-max-width': 8 }, paint: { 'text-color': c.label, 'text-halo-color': c.halo, 'text-halo-width': 2 } },
     ],
   };
 }

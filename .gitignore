@@ -5,3 +5,4 @@ dist/
 *.pmtiles
 private/
 .DS_Store
+public/tiles/

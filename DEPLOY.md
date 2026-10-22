@@ -86,6 +86,18 @@ Replace the last step of the workflow with an upload, and add the repository sec
 ```
 (`--exclude-glob tiles/` keeps the map file; no `--delete`, so nothing else is removed either.)
 
+### B2. Build on the server (Plesk Git + Node.js extension)
+If Plesk pulls `main` into a folder such as `/var/www/vhosts/<domain>/kaifu.ee` and you build there:
+1. **Hosting settings → Document root:** `kaifu.ee/dist`. The repo, `node_modules` and
+   source files stay outside what's served.
+2. In the repo folder: `npm ci` (or Plesk Node.js → **NPM install**), then `npm run build`.
+   The build tools are regular dependencies, so a production-only install is enough.
+   To rebuild automatically, in Git → **Enable additional deployment actions**:
+   `npm ci && npm run build` (only if your plan allows shell commands there).
+3. The database then lives in `kaifu.ee/private/` (next to `dist/`, not served, ignored by Git).
+4. **Map tiles go in `kaifu.ee/public/tiles/`, not `dist/tiles/`.** Every build empties
+   `dist/` and copies `public/` into it. Files in `public/tiles/` are ignored by Git and survive.
+
 ### C. By hand
 `npm ci && npm run build`, zip the **contents** of `dist/`, Plesk File Manager →
 `httpdocs` → Upload → Extract.

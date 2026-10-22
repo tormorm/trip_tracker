@@ -1,0 +1,243 @@
+{
+  "phrases": [
+    {
+      "id": "hello",
+      "meaning": {
+        "et": "Tere",
+        "en": "Hello"
+      },
+      "vi": {
+        "text": "Xin chào",
+        "say": {
+          "et": "sin tšau",
+          "en": "sin chow"
+        }
+      },
+      "km": {
+        "text": "សួស្តី",
+        "say": {
+          "et": "suos-dei",
+          "en": "sour-s'day"
+        }
+      }
+    },
+    {
+      "id": "thanks",
+      "meaning": {
+        "et": "Aitäh",
+        "en": "Thank you"
+      },
+      "vi": {
+        "text": "Cảm ơn",
+        "say": {
+          "et": "kamm õn",
+          "en": "gahm uhn"
+        }
+      },
+      "km": {
+        "text": "អរគុណ",
+        "say": {
+          "et": "or-kun",
+          "en": "aw-kun"
+        }
+      }
+    },
+    {
+      "id": "how-much",
+      "meaning": {
+        "et": "Kui palju maksab?",
+        "en": "How much?"
+      },
+      "vi": {
+        "text": "Bao nhiêu tiền?",
+        "say": {
+          "et": "bau nieu tien",
+          "en": "bow nyew tee-en"
+        }
+      },
+      "km": {
+        "text": "តម្លៃប៉ុន្មាន?",
+        "say": {
+          "et": "dam-lai bon-maan",
+          "en": "dum-lie bpon-mahn"
+        }
+      }
+    },
+    {
+      "id": "no-ice",
+      "meaning": {
+        "et": "Ilma jääta",
+        "en": "No ice"
+      },
+      "vi": {
+        "text": "Không đá",
+        "say": {
+          "et": "hoom daa",
+          "en": "khom dah"
+        }
+      },
+      "km": {
+        "text": "កុំដាក់ទឹកកក",
+        "say": {
+          "et": "kom dak tök kok",
+          "en": "kom dak teuk kok"
+        }
+      }
+    },
+    {
+      "id": "sorry",
+      "meaning": {
+        "et": "Vabandust",
+        "en": "Sorry / excuse me"
+      },
+      "vi": {
+        "text": "Xin lỗi",
+        "say": {
+          "et": "sin loi",
+          "en": "sin loy"
+        }
+      },
+      "km": {
+        "text": "សុំទោស",
+        "say": {
+          "et": "som toos",
+          "en": "som toh"
+        }
+      }
+    }
+  ],
+  "numbers": [
+    {
+      "n": 1,
+      "vi": {
+        "text": "một",
+        "say": "moht"
+      },
+      "km": {
+        "text": "មួយ",
+        "say": "muoy"
+      }
+    },
+    {
+      "n": 2,
+      "vi": {
+        "text": "hai",
+        "say": "hai"
+      },
+      "km": {
+        "text": "ពីរ",
+        "say": "pii"
+      }
+    },
+    {
+      "n": 3,
+      "vi": {
+        "text": "ba",
+        "say": "baa"
+      },
+      "km": {
+        "text": "បី",
+        "say": "bei"
+      }
+    },
+    {
+      "n": 4,
+      "vi": {
+        "text": "bốn",
+        "say": "bohn"
+      },
+      "km": {
+        "text": "បួន",
+        "say": "buon"
+      }
+    },
+    {
+      "n": 5,
+      "vi": {
+        "text": "năm",
+        "say": "nahm"
+      },
+      "km": {
+        "text": "ប្រាំ",
+        "say": "pram"
+      }
+    },
+    {
+      "n": 6,
+      "vi": {
+        "text": "sáu",
+        "say": "sau"
+      },
+      "km": {
+        "text": "ប្រាំមួយ",
+        "say": "pram-muoy"
+      }
+    },
+    {
+      "n": 7,
+      "vi": {
+        "text": "bảy",
+        "say": "bai"
+      },
+      "km": {
+        "text": "ប្រាំពីរ",
+        "say": "pram-pii"
+      }
+    },
+    {
+      "n": 8,
+      "vi": {
+        "text": "tám",
+        "say": "tahm"
+      },
+      "km": {
+        "text": "ប្រាំបី",
+        "say": "pram-bei"
+      }
+    },
+    {
+      "n": 9,
+      "vi": {
+        "text": "chín",
+        "say": "tšin"
+      },
+      "km": {
+        "text": "ប្រាំបួន",
+        "say": "pram-buon"
+      }
+    },
+    {
+      "n": 10,
+      "vi": {
+        "text": "mười",
+        "say": "muoi"
+      },
+      "km": {
+        "text": "ដប់",
+        "say": "dop"
+      }
+    }
+  ],
+  "cards": {
+    "vi": {
+      "takeMeTo": "Vui lòng đưa tôi đến:",
+      "phone": "Điện thoại khách sạn:",
+      "lost": "Tôi bị lạc.",
+      "noLanguage": "Tôi không nói được tiếng Việt.",
+      "helpMeHotel": "Xin hãy giúp tôi về khách sạn này.",
+      "callThis": "Xin hãy gọi giúp tôi số này:",
+      "myHotel": "Khách sạn của tôi:",
+      "myName": "Tên tôi:"
+    },
+    "km": {
+      "takeMeTo": "សូមជូនខ្ញុំទៅ៖",
+      "phone": "លេខទូរស័ព្ទ៖",
+      "lost": "ខ្ញុំវង្វេងផ្លូវ។",
+      "noLanguage": "ខ្ញុំមិនចេះនិយាយភាសាខ្មែរទេ។",
+      "helpMeHotel": "សូមជួយខ្ញុំទៅសណ្ឋាគារនេះ។",
+      "callThis": "សូមជួយទូរស័ព្ទទៅលេខនេះ៖",
+      "myHotel": "សណ្ឋាគាររបស់ខ្ញុំ៖",
+      "myName": "ឈ្មោះខ្ញុំ៖"
+    }
+  }
+}

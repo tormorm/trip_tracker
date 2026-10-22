@@ -1,0 +1,91 @@
+.mapwrap { position: absolute; inset: 0; overflow: hidden; background: var(--paper); }
+.mapwrap .map { position: absolute; inset: 0; }
+
+/* ---------- markers: shape AND colour differ ---------- */
+.mkr { display: flex; align-items: center; gap: 6px; padding: 0; border: 0; background: none; cursor: pointer; font: inherit; }
+.mkr .shape { width: 32px; height: 32px; display: grid; place-items: center; flex: none; }
+.mkr .shape::before { content: ''; display: block; }
+.mkr-popular .shape::before { width: 24px; height: 24px; border-radius: 50%; background: var(--lacquer); box-shadow: 0 0 0 3px var(--card), 0 0 0 5px var(--ink); }
+.mkr-hidden .shape::before { width: 19px; height: 19px; transform: rotate(45deg); background: var(--jade); box-shadow: 0 0 0 3px var(--card), 0 0 0 5px var(--ink); }
+.mkr-wishlist .shape::before { width: 20px; height: 26px; background: var(--laterite); clip-path: polygon(0 0, 100% 0, 100% 100%, 50% 74%, 0 100%); }
+.mkr-hotels .shape { width: 30px; height: 30px; margin: 1px; border-radius: 7px; background: var(--ink); color: var(--on-ink); box-shadow: 0 0 0 2px var(--card); }
+.mkr-hotels .shape::before { display: none; }
+.mkr .lbl {
+  background: var(--card); color: var(--ink); border: 1.5px solid var(--ink); border-radius: 6px;
+  padding: 1px 7px; font-size: 13px; font-weight: 700; white-space: nowrap; max-width: 160px; overflow: hidden; text-overflow: ellipsis;
+}
+.mkr-hotels .lbl { background: var(--ink); color: var(--on-ink); }
+.zoom-low .mkr:not(.mkr-hotels) .lbl { display: none; }
+.zoom-low .mkr-popular .shape, .zoom-low .mkr-hidden .shape, .zoom-low .mkr-wishlist .shape { transform: scale(0.7); }
+.zoom-far .mkr-popular, .zoom-far .mkr-hidden, .zoom-far .mkr-wishlist { display: none; }
+.hide-popular .mkr-popular, .hide-hidden .mkr-hidden, .hide-wishlist .mkr-wishlist, .hide-hotels .mkr-hotels { display: none; }
+.me { width: 20px; height: 20px; border-radius: 50%; background: #2f6fdf; border: 3px solid #fff; box-shadow: 0 0 0 10px rgba(47, 111, 223, 0.22); }
+
+/* ---------- top: where + layer chips ---------- */
+.map-top { position: absolute; top: 12px; left: 12px; right: 12px; z-index: 3; pointer-events: none; }
+.map-top > * { pointer-events: auto; }
+.where {
+  display: inline-flex; flex-direction: column; max-width: calc(100% - 120px);
+  background: var(--card); border: 2px solid var(--line); border-radius: var(--radius); padding: 8px 14px; font-size: 17px;
+}
+.where .pill { margin-top: 4px; align-self: flex-start; }
+.chips { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 10px; }
+.chip {
+  display: inline-flex; align-items: center; gap: 8px; min-height: 44px; padding: 0 14px;
+  border-radius: 999px; border: 2px solid var(--line); background: var(--card); color: var(--ink);
+  font-weight: 800; font-size: 14px; cursor: pointer;
+}
+.chip[aria-pressed='true'] { background: var(--ink); color: var(--on-ink); }
+.chip[aria-pressed='false'] { color: var(--ink-2); text-decoration: line-through; }
+.chip-mk { display: inline-block; width: 13px; height: 13px; flex: none; }
+.chip-popular .chip-mk, .kind-popular .chip-mk { border-radius: 50%; background: var(--lacquer); box-shadow: 0 0 0 1.5px var(--card); }
+.chip-hidden .chip-mk, .kind-hidden .chip-mk { width: 11px; height: 11px; transform: rotate(45deg); background: var(--jade); box-shadow: 0 0 0 1.5px var(--card); }
+.chip-wishlist .chip-mk, .kind-wishlist .chip-mk { width: 11px; height: 14px; background: var(--laterite); clip-path: polygon(0 0, 100% 0, 100% 100%, 50% 74%, 0 100%); }
+.chip-hotels .chip-mk, .kind-hotels .chip-mk { border-radius: 3px; background: var(--ink); box-shadow: 0 0 0 2px var(--card); }
+
+/* ---------- locate ---------- */
+.locate {
+  position: absolute; right: 14px; bottom: 104px; z-index: 3;
+  width: 58px; height: 58px; border-radius: 50%; border: 2px solid var(--line); background: var(--card); color: var(--ink);
+  display: grid; place-items: center; cursor: pointer;
+}
+.locate.busy svg { animation: spin 1.2s linear infinite; }
+@keyframes spin { to { transform: rotate(360deg); } }
+
+/* ---------- day strip ---------- */
+.strip {
+  position: absolute; left: 0; right: 0; bottom: 0; z-index: 4; margin: 0; list-style: none;
+  display: flex; gap: 8px; overflow-x: auto; padding: 10px 12px; scrollbar-width: none;
+  background: var(--card); border-top: 2px solid var(--line);
+}
+.strip::-webkit-scrollbar { display: none; }
+.dayb {
+  min-width: 64px; height: 68px; display: flex; flex-direction: column; align-items: center; justify-content: center;
+  border: 1.5px solid var(--hair); border-radius: 12px; background: var(--card); cursor: pointer; padding: 0 6px;
+}
+.dnum { font-size: 22px; font-weight: 800; line-height: 1.05; }
+.dstop { font-size: 11px; font-weight: 800; text-transform: uppercase; max-width: 70px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.dayb.past { opacity: 0.55; }
+.dayb.active { border: 2.5px solid var(--line); }
+.dayb.today { background: var(--lacquer); border-color: var(--lacquer); color: var(--lacquer-ink); opacity: 1; }
+.dayb.today.active { box-shadow: 0 0 0 2.5px var(--card), 0 0 0 4.5px var(--line); }
+
+/* ---------- sheet ---------- */
+.sheet {
+  position: absolute; left: 0; right: 0; bottom: 90px; z-index: 5; max-height: 55%; overflow-y: auto;
+  background: var(--card); border-top: 2px solid var(--line); border-radius: 20px 20px 0 0;
+  padding: 16px 20px 18px; box-shadow: 0 -6px 24px rgba(0, 0, 0, 0.12);
+}
+.sheet h2 { font-size: 24px; font-weight: 800; margin: 2px 48px 4px 0; }
+.sheet p { margin: 6px 0; }
+.sheet .kind { display: flex; align-items: center; gap: 8px; margin: 0; font-weight: 800; font-size: 13px; text-transform: uppercase; letter-spacing: 0.06em; color: var(--ink-2); }
+.sheet .local { color: var(--ink-2); font-weight: 600; margin-top: 0; }
+.sheet .close { position: absolute; top: 8px; right: 8px; width: 48px; height: 48px; border: 0; background: none; font-size: 32px; line-height: 1; cursor: pointer; }
+.sheet-actions { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 12px; }
+.sheet-actions .btn { flex: 1 1 auto; font-size: 16px; }
+
+.maplibregl-ctrl-attrib { font-size: 10px; }
+.mapwrap .maplibregl-ctrl-bottom-right { bottom: 92px; }
+@media (min-width: 900px) {
+  .sheet { left: auto; right: 16px; bottom: 100px; width: 380px; border: 2px solid var(--line); border-radius: 20px; }
+}

@@ -1,0 +1,14 @@
+---
+// Renders text in both languages; global CSS hides the inactive one.
+// <T k="tab.today" />  or  <T v={place.note} />  (v = string | {et, en})
+import { ui, type UiKey } from '../i18n/ui';
+import type { Localized } from '../data/schema';
+
+interface Props {
+  k?: UiKey;
+  v?: Localized;
+}
+const { k, v } = Astro.props;
+const value = k ? ui[k] : v;
+---
+{typeof value === 'string' ? value : value && (<><span data-l="et" lang="et">{value.et}</span><span data-l="en" lang="en">{value.en}</span></>)}

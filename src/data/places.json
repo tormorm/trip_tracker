@@ -1,0 +1,476 @@
+{
+  "places": [
+    {
+      "id": "hanoi-hoan-kiem",
+      "stopId": "hanoi",
+      "name": "Hồ Hoàn Kiếm",
+      "tier": "popular",
+      "lat": 21.0287,
+      "lng": 105.8524,
+      "note": {
+        "et": "Järv vanalinna südames; nädalavahetustel autovaba.",
+        "en": "Lake at the heart of the Old Quarter; car-free on weekends."
+      },
+      "bestTime": {
+        "et": "koidikul",
+        "en": "dawn"
+      },
+      "placeholder": true
+    },
+    {
+      "id": "hanoi-temple-literature",
+      "stopId": "hanoi",
+      "name": "Văn Miếu",
+      "tier": "popular",
+      "lat": 21.0293,
+      "lng": 105.8355,
+      "note": {
+        "et": "Kirjanduse tempel, Vietnami esimene ülikool.",
+        "en": "Temple of Literature, Vietnam's first university."
+      },
+      "bestTime": {
+        "et": "avamisel 08:00",
+        "en": "at opening, 08:00"
+      },
+      "placeholder": true
+    },
+    {
+      "id": "hanoi-long-bien",
+      "stopId": "hanoi",
+      "name": "Cầu Long Biên",
+      "tier": "hidden",
+      "lat": 21.0434,
+      "lng": 105.8592,
+      "note": {
+        "et": "Vana raudsild; jalgsi üle, rongid mööda.",
+        "en": "Old iron bridge; walk across as trains pass."
+      },
+      "bestTime": {
+        "et": "päikesetõus",
+        "en": "sunrise"
+      },
+      "placeholder": true
+    },
+    {
+      "id": "hanoi-flower-market",
+      "stopId": "hanoi",
+      "name": "Chợ hoa Quảng Bá",
+      "tier": "hidden",
+      "lat": 21.0657,
+      "lng": 105.8268,
+      "note": {
+        "et": "Öine lilleturg, hulgimüük.",
+        "en": "Night wholesale flower market."
+      },
+      "bestTime": "02:00–05:00",
+      "placeholder": true
+    },
+    {
+      "id": "nb-trang-an",
+      "stopId": "ninh-binh",
+      "name": "Tràng An",
+      "tier": "popular",
+      "lat": 20.2546,
+      "lng": 105.9161,
+      "note": {
+        "et": "Sõudepaat koobaste vahel, 2–3 h.",
+        "en": "Rowing boat through caves, 2–3 h."
+      },
+      "bestTime": {
+        "et": "enne 08:00",
+        "en": "before 08:00"
+      },
+      "placeholder": true
+    },
+    {
+      "id": "nb-hang-mua",
+      "stopId": "ninh-binh",
+      "name": "Hang Múa",
+      "tier": "popular",
+      "lat": 20.2353,
+      "lng": 105.9283,
+      "note": {
+        "et": "500 trepiastet, vaade riisipõldudele.",
+        "en": "500 steps, view over the rice fields."
+      },
+      "bestTime": {
+        "et": "päikeseloojang",
+        "en": "sunset"
+      },
+      "placeholder": true
+    },
+    {
+      "id": "nb-am-tien",
+      "stopId": "ninh-binh",
+      "name": "Động Am Tiên",
+      "tier": "hidden",
+      "lat": 20.2939,
+      "lng": 105.9047,
+      "note": {
+        "et": "Vaikne koopatempel orus, vähe külastajaid.",
+        "en": "Quiet cave temple in a valley, few visitors."
+      },
+      "bestTime": {
+        "et": "pärastlõuna",
+        "en": "afternoon"
+      },
+      "placeholder": true
+    },
+    {
+      "id": "hoian-chua-cau",
+      "stopId": "hoi-an",
+      "name": "Chùa Cầu",
+      "tier": "popular",
+      "lat": 15.877,
+      "lng": 108.3263,
+      "note": {
+        "et": "Jaapani sild, linna sümbol.",
+        "en": "Japanese bridge, the town's symbol."
+      },
+      "bestTime": {
+        "et": "enne rahvamassi, enne 08:00",
+        "en": "before the crowds, before 08:00"
+      },
+      "placeholder": true
+    },
+    {
+      "id": "hoian-lanterns",
+      "stopId": "hoi-an",
+      "name": "Phố cổ Hội An",
+      "tier": "popular",
+      "lat": 15.8768,
+      "lng": 108.329,
+      "note": {
+        "et": "Vanalinna laternad. Paadisõit An Hội silla juurest.",
+        "en": "Old town lanterns. Boat ride from An Hội bridge."
+      },
+      "bestTime": {
+        "et": "pärast 18:00",
+        "en": "after 18:00"
+      },
+      "placeholder": true
+    },
+    {
+      "id": "hoian-an-bang",
+      "stopId": "hoi-an",
+      "name": "Biển An Bàng",
+      "tier": "popular",
+      "lat": 15.9136,
+      "lng": 108.3417,
+      "note": {
+        "et": "Rand, 5 km vanalinnast.",
+        "en": "Beach, 5 km from the old town."
+      },
+      "bestTime": {
+        "et": "hommikuti",
+        "en": "mornings"
+      },
+      "placeholder": true
+    },
+    {
+      "id": "hoian-my-son",
+      "stopId": "hoi-an",
+      "name": "Mỹ Sơn",
+      "tier": "popular",
+      "lat": 15.764,
+      "lng": 108.124,
+      "note": {
+        "et": "Tšampa templivaremed džunglis, 1 h autoga.",
+        "en": "Cham temple ruins in the jungle, 1 h by car."
+      },
+      "bestTime": {
+        "et": "avamisel 06:00",
+        "en": "at opening, 06:00"
+      },
+      "placeholder": true
+    },
+    {
+      "id": "hoian-tra-que",
+      "stopId": "hoi-an",
+      "name": "Làng rau Trà Quế",
+      "tier": "hidden",
+      "lat": 15.903,
+      "lng": 108.338,
+      "note": {
+        "et": "Ürdiaiad, rattaga 3 km.",
+        "en": "Herb gardens, 3 km by bike."
+      },
+      "bestTime": {
+        "et": "hommik",
+        "en": "morning"
+      },
+      "placeholder": true
+    },
+    {
+      "id": "hoian-thanh-ha",
+      "stopId": "hoi-an",
+      "name": "Làng gốm Thanh Hà",
+      "tier": "hidden",
+      "lat": 15.879,
+      "lng": 108.3,
+      "note": {
+        "et": "Keraamikaküla, 3 km lääne.",
+        "en": "Pottery village, 3 km west."
+      },
+      "bestTime": {
+        "et": "pärastlõuna",
+        "en": "afternoon"
+      },
+      "placeholder": true
+    },
+    {
+      "id": "saigon-ben-thanh",
+      "stopId": "saigon",
+      "name": "Chợ Bến Thành",
+      "tier": "popular",
+      "lat": 10.7725,
+      "lng": 106.698,
+      "note": {
+        "et": "Suur turg; kauple.",
+        "en": "Big market; haggle."
+      },
+      "bestTime": {
+        "et": "hommik",
+        "en": "morning"
+      },
+      "placeholder": true
+    },
+    {
+      "id": "saigon-war-remnants",
+      "stopId": "saigon",
+      "name": "Bảo tàng Chứng tích Chiến tranh",
+      "tier": "popular",
+      "lat": 10.7795,
+      "lng": 106.6921,
+      "note": {
+        "et": "Sõjamuuseum. Raske, aga oluline.",
+        "en": "War Remnants Museum. Heavy but important."
+      },
+      "bestTime": {
+        "et": "avamisel",
+        "en": "at opening"
+      },
+      "placeholder": true
+    },
+    {
+      "id": "saigon-ho-thi-ky",
+      "stopId": "saigon",
+      "name": "Hẻm Hồ Thị Kỷ",
+      "tier": "hidden",
+      "lat": 10.7658,
+      "lng": 106.6797,
+      "note": {
+        "et": "Toidu-allee, kohalikud söövad siin.",
+        "en": "Food alley where locals eat."
+      },
+      "bestTime": {
+        "et": "õhtu",
+        "en": "evening"
+      },
+      "placeholder": true
+    },
+    {
+      "id": "saigon-cafe-apartments",
+      "stopId": "saigon",
+      "name": "Chung cư 42 Nguyễn Huệ",
+      "tier": "hidden",
+      "lat": 10.774,
+      "lng": 106.704,
+      "note": {
+        "et": "Vana kortermaja täis kohvikuid.",
+        "en": "Old apartment block full of cafés."
+      },
+      "bestTime": {
+        "et": "pärastlõuna",
+        "en": "afternoon"
+      },
+      "placeholder": true
+    },
+    {
+      "id": "cantho-cai-rang",
+      "stopId": "can-tho",
+      "name": "Chợ nổi Cái Răng",
+      "tier": "popular",
+      "lat": 10.009,
+      "lng": 105.747,
+      "note": {
+        "et": "Ujuvturg; paat kaldalt.",
+        "en": "Floating market; boat from the quay."
+      },
+      "bestTime": "05:30–08:00",
+      "placeholder": true
+    },
+    {
+      "id": "cantho-binh-thuy",
+      "stopId": "can-tho",
+      "name": "Nhà cổ Bình Thủy",
+      "tier": "hidden",
+      "lat": 10.066,
+      "lng": 105.747,
+      "note": {
+        "et": "Vana koloniaalmaja aiaga.",
+        "en": "Old colonial house with a garden."
+      },
+      "bestTime": {
+        "et": "pärastlõuna",
+        "en": "afternoon"
+      },
+      "placeholder": true
+    },
+    {
+      "id": "sr-angkor-wat",
+      "stopId": "siem-reap",
+      "name": "Angkor Wat",
+      "tier": "popular",
+      "lat": 13.4125,
+      "lng": 103.867,
+      "note": {
+        "et": "Päikesetõus peegeltiigi ääres.",
+        "en": "Sunrise by the reflecting pool."
+      },
+      "bestTime": "05:00",
+      "placeholder": true,
+      "nameLocal": "អង្គរវត្ត"
+    },
+    {
+      "id": "sr-bayon",
+      "stopId": "siem-reap",
+      "name": "Bayon",
+      "tier": "popular",
+      "lat": 13.4412,
+      "lng": 103.859,
+      "note": {
+        "et": "Kivinäod tornides.",
+        "en": "Stone faces on the towers."
+      },
+      "bestTime": {
+        "et": "hommik",
+        "en": "morning"
+      },
+      "placeholder": true,
+      "nameLocal": "បាយ័ន"
+    },
+    {
+      "id": "sr-ta-prohm",
+      "stopId": "siem-reap",
+      "name": "Ta Prohm",
+      "tier": "popular",
+      "lat": 13.435,
+      "lng": 103.889,
+      "note": {
+        "et": "Puujuured templimüüridel.",
+        "en": "Tree roots over temple walls."
+      },
+      "bestTime": {
+        "et": "avamisel 07:00",
+        "en": "at opening, 07:00"
+      },
+      "placeholder": true,
+      "nameLocal": "តាព្រហ្ម"
+    },
+    {
+      "id": "sr-banteay-srei",
+      "stopId": "siem-reap",
+      "name": "Banteay Srei",
+      "tier": "hidden",
+      "lat": 13.599,
+      "lng": 103.963,
+      "note": {
+        "et": "Roosa liivakivi, peened raidkujud. 40 min tuk-tukiga.",
+        "en": "Pink sandstone, fine carvings. 40 min by tuk-tuk."
+      },
+      "bestTime": {
+        "et": "hommik",
+        "en": "morning"
+      },
+      "placeholder": true,
+      "nameLocal": "បន្ទាយស្រី"
+    },
+    {
+      "id": "sr-phare",
+      "stopId": "siem-reap",
+      "name": "Phare Circus",
+      "tier": "hidden",
+      "lat": 13.359,
+      "lng": 103.865,
+      "note": {
+        "et": "Kohalik tsirkus, sotsiaalne ettevõte.",
+        "en": "Local circus, a social enterprise."
+      },
+      "bestTime": "20:00",
+      "placeholder": true
+    },
+    {
+      "id": "pp-royal-palace",
+      "stopId": "phnom-penh",
+      "name": "Royal Palace",
+      "tier": "popular",
+      "lat": 11.5636,
+      "lng": 104.931,
+      "note": {
+        "et": "Õlad ja põlved kaetud.",
+        "en": "Cover shoulders and knees."
+      },
+      "bestTime": {
+        "et": "avamisel",
+        "en": "at opening"
+      },
+      "placeholder": true,
+      "nameLocal": "ព្រះបរមរាជវាំង"
+    },
+    {
+      "id": "pp-tuol-sleng",
+      "stopId": "phnom-penh",
+      "name": "Tuol Sleng",
+      "tier": "popular",
+      "lat": 11.5494,
+      "lng": 104.9178,
+      "note": {
+        "et": "Genotsiidimuuseum. Võta audiogiid.",
+        "en": "Genocide museum. Take the audio guide."
+      },
+      "bestTime": {
+        "et": "hommik",
+        "en": "morning"
+      },
+      "placeholder": true,
+      "nameLocal": "ទួលស្លែង"
+    },
+    {
+      "id": "pp-russian-market",
+      "stopId": "phnom-penh",
+      "name": "Phsar Toul Tom Poung",
+      "tier": "popular",
+      "lat": 11.5355,
+      "lng": 104.919,
+      "note": {
+        "et": "Vene turg: kangad, tööriistad, toit.",
+        "en": "Russian Market: fabric, tools, food."
+      },
+      "bestTime": {
+        "et": "hommik",
+        "en": "morning"
+      },
+      "placeholder": true,
+      "nameLocal": "ផ្សារទួលទំពូង"
+    },
+    {
+      "id": "pp-silk-island",
+      "stopId": "phnom-penh",
+      "name": "Koh Dach",
+      "tier": "hidden",
+      "lat": 11.643,
+      "lng": 104.954,
+      "note": {
+        "et": "Siidisaar, kudujad; parvega üle.",
+        "en": "Silk Island, weavers; cross by ferry."
+      },
+      "bestTime": {
+        "et": "hommik",
+        "en": "morning"
+      },
+      "placeholder": true,
+      "nameLocal": "កោះដាច់"
+    }
+  ]
+}

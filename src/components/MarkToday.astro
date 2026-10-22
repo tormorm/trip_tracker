@@ -1,0 +1,12 @@
+---
+// Client-side: highlight [data-date] elements for today (trip time) and dim past ones.
+---
+<script>
+  import { tripNow } from '../lib/time';
+  const today = tripNow().date;
+  document.querySelectorAll<HTMLElement>('[data-date]').forEach((el) => {
+    const d = el.dataset.date!;
+    el.classList.toggle('is-today', d === today);
+    el.classList.toggle('is-past', d < today);
+  });
+</script>

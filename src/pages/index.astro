@@ -1,0 +1,15 @@
+---
+import Base from '../layouts/Base.astro';
+import LangToggle from '../components/LangToggle.astro';
+import TodayView from '../components/react/TodayView';
+import { trip, places } from '../lib/data';
+
+// Only what the island needs, to keep the page small.
+const slimPlaces = places.map(({ id, name, tier, note }) => ({ id, name, tier, note }));
+---
+<Base title="Täna · Today">
+  <main class="page">
+    <div class="corner"><LangToggle /></div>
+    <TodayView client:load trip={trip} places={slimPlaces} />
+  </main>
+</Base>

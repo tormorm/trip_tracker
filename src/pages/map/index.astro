@@ -1,0 +1,26 @@
+---
+import Base from '../../layouts/Base.astro';
+import LangToggle from '../../components/LangToggle.astro';
+import MapView from '../../components/react/MapView';
+import { trip, places } from '../../lib/data';
+
+const stops = trip.stops.map(({ id, name, country, lat, lng, hotel }) => ({
+  id, name, country, lat, lng,
+  hotel: { name: hotel.name, nameLocal: hotel.nameLocal, address: hotel.address, phone: hotel.phone, lat: hotel.lat, lng: hotel.lng },
+}));
+const mapPlaces = places.map(({ id, stopId, name, nameLocal, tier, lat, lng, note, bestTime }) => ({ id, stopId, name, nameLocal, tier, lat, lng, note, bestTime }));
+const days = trip.days.map((d) => ({
+  date: d.date, stopId: d.stopId, title: d.title,
+  placeIds: d.items.flatMap((i) => (i.placeId ? [i.placeId] : [])),
+}));
+---
+<Base title="Kaart · Map" fullscreen>
+  <main>
+    <div class="corner map-corner"><LangToggle /></div>
+    <MapView client:only="react" startDate={trip.startDate} stops={stops} places={mapPlaces} days={days} />
+  </main>
+</Base>
+
+<style>
+  .map-corner { top: 12px; right: 12px; }
+</style>

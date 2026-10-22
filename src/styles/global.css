@@ -1,0 +1,104 @@
+@import './fonts.css';
+
+/* Tokens from the Claude Design component set ("field notebook × street signage"). */
+:root {
+  --paper: #f3eadb;
+  --card: #fffaf0;
+  --ink: #1b1915;
+  --ink-2: #4b4338; /* secondary text, ≈ 8:1 on paper — never grey */
+  --fill: #e8dcc6; /* muted fills, chips, inactive toggles */
+  --line: #1b1915;
+  --hair: #d9cbb2;
+  --lacquer: #a8241c;
+  --lacquer-ink: #fff;
+  --jade: #1d6a4f;
+  --jade-tint: #e3ede4;
+  --laterite: #c2531a; /* fill only — ink text on it */
+  --on-ink: #fffaf0;
+  --radius: 14px;
+  --radius-lg: 20px;
+  --tap: 48px;
+  --tabbar-h: 78px;
+  --font: 'Be Vietnam Pro', 'Noto Sans Khmer', system-ui, sans-serif;
+  --font-km: 'Noto Sans Khmer', 'Be Vietnam Pro', sans-serif;
+  --font-serif: 'Fraunces', Georgia, serif;
+  color-scheme: light dark;
+}
+@media (prefers-color-scheme: dark) {
+  :root {
+    --paper: #14120e;
+    --card: #211d17;
+    --ink: #f5ecdd;
+    --ink-2: #c9bda9;
+    --fill: #2c261e;
+    --line: #f5ecdd;
+    --hair: #3a332a;
+    --lacquer: #f2705f;
+    --lacquer-ink: #14120e;
+    --jade: #5fc39c;
+    --jade-tint: #1c2a22;
+    --laterite: #f0965a;
+    --on-ink: #14120e;
+  }
+}
+
+*, *::before, *::after { box-sizing: border-box; }
+html { -webkit-text-size-adjust: 100%; }
+body {
+  margin: 0;
+  background: var(--paper);
+  color: var(--ink);
+  font: 500 16px/1.45 var(--font);
+  -webkit-font-smoothing: antialiased;
+  min-height: 100dvh;
+}
+:lang(km), .km { font-family: var(--font-km); line-height: 1.6; }
+h1, h2, h3 { margin: 0; line-height: 1.1; }
+.serif { font-family: var(--font-serif); font-weight: 700; }
+.aside { font-family: var(--font-serif); font-style: italic; font-weight: 500; }
+.label { font-size: 13px; font-weight: 800; letter-spacing: 0.08em; text-transform: uppercase; }
+.muted { color: var(--ink-2); }
+a { color: inherit; }
+button { font: inherit; color: inherit; }
+:focus-visible { outline: 3px solid var(--laterite); outline-offset: 2px; }
+
+/* Language: every string is rendered in both languages; CSS shows one. */
+html[data-lang='et'] [data-l='en'],
+html[data-lang='en'] [data-l='et'] { display: none !important; }
+
+.page {
+  max-width: 720px;
+  margin: 0 auto;
+  padding: 20px 20px calc(var(--tabbar-h) + 32px + env(safe-area-inset-bottom));
+}
+.card { background: var(--card); border: 1.5px solid var(--hair); border-radius: var(--radius); }
+.card-strong { background: var(--card); border: 2px solid var(--line); border-radius: var(--radius-lg); }
+
+.btn {
+  min-height: var(--tap);
+  display: inline-flex; align-items: center; justify-content: center; gap: 10px;
+  padding: 0 20px; border-radius: var(--radius);
+  border: 2px solid var(--line); background: var(--card); color: var(--ink);
+  font-weight: 800; font-size: 17px; text-decoration: none; cursor: pointer;
+}
+.btn-primary { background: var(--lacquer); border-color: var(--lacquer); color: var(--lacquer-ink); }
+.btn-ink { background: var(--ink); border-color: var(--ink); color: var(--on-ink); }
+.btn-big { min-height: 84px; border-radius: var(--radius-lg); font-size: 19px; }
+
+.pill {
+  display: inline-flex; align-items: center; gap: 6px;
+  padding: 3px 10px; border-radius: 999px; border: 1.5px solid var(--hair);
+  font-size: 13px; font-weight: 600; color: var(--ink-2);
+}
+.pill::before { content: ''; width: 7px; height: 7px; border-radius: 50%; border: 2px solid currentColor; }
+
+/* Quiet offline indicator: only visible while offline. */
+.offline-pill { display: none; }
+html.is-offline .offline-pill { display: inline-flex; }
+
+/* Language toggle sits top-right on every tab. */
+.corner { position: absolute; top: 16px; right: 20px; z-index: 5; }
+.page { position: relative; }
+
+body.fullscreen { height: 100dvh; display: flex; flex-direction: column; overflow: hidden; }
+body.fullscreen > main { flex: 1; min-height: 0; position: relative; margin-bottom: calc(var(--tabbar-h) + env(safe-area-inset-bottom)); }

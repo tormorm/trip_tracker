@@ -1,0 +1,81 @@
+// UI chrome strings (not trip content — that lives in src/data).
+// Estonian is the default language; every key needs both.
+export type Lang = 'et' | 'en';
+export const LANGS: Lang[] = ['et', 'en'];
+export const DEFAULT_LANG: Lang = 'et';
+
+export const ui = {
+  'tab.today': { et: 'Täna', en: 'Today' },
+  'tab.map': { et: 'Kaart', en: 'Map' },
+  'tab.plan': { et: 'Plaan', en: 'Plan' },
+  'tab.wishlist': { et: 'Soovid', en: 'Wishlist' },
+  'tab.kit': { et: 'Abi', en: 'Kit' },
+  'banner.placeholder': { et: 'NÄIDISANDMED — päris marsruut tulemas', en: 'PLACEHOLDER DATA — real route to come' },
+  'lang.switch': { et: 'Keel', en: 'Language' },
+  'stub.soon': { et: 'Tuleb järgmises etapis.', en: 'Coming in the next phase.' },
+  'offline': { et: 'Võrguta', en: 'Offline' },
+  'country.VN': { et: 'Vietnam', en: 'Vietnam' },
+  'country.KH': { et: 'Kambodža', en: 'Cambodia' },
+  'mode.flight': { et: 'lend', en: 'flight' },
+  'mode.car': { et: 'auto', en: 'car' },
+  'mode.bus': { et: 'buss', en: 'bus' },
+  'mode.train': { et: 'rong', en: 'train' },
+  'mode.boat': { et: 'paat', en: 'boat' },
+  'tier.popular': { et: 'Populaarne', en: 'Popular' },
+  'tier.hidden': { et: 'Peidus pärl', en: 'Hidden gem' },
+  'layer.popular': { et: 'Populaarne', en: 'Popular' },
+  'layer.hidden': { et: 'Pärlid', en: 'Hidden gems' },
+  'layer.wishlist': { et: 'Soovid', en: 'Wishlist' },
+  'layer.hotels': { et: 'Hotellid', en: 'Hotels' },
+  'hotel': { et: 'Hotell', en: 'Hotel' },
+  'today': { et: 'Täna', en: 'Today' },
+  'day': { et: 'päev', en: 'day' },
+  'today.dayOf': { et: 'Päev', en: 'Day' },
+  'today.sunrise': { et: 'Päikesetõus', en: 'Sunrise' },
+  'today.sunriseTomorrow': { et: 'Päikesetõus homme', en: 'Sunrise tomorrow' },
+  'today.sunset': { et: 'Loojang', en: 'Sunset' },
+  'today.stops': { et: 'Tänased peatused', en: "Today's stops" },
+  'today.wholeDay': { et: 'Kogu päev', en: 'Whole day' },
+  'today.noStops': { et: 'Täna pole midagi plaanitud.', en: 'Nothing planned today.' },
+  'today.now': { et: 'Praegu', en: 'Now' },
+  'today.tonight': { et: 'Täna öösel', en: 'Tonight' },
+  'today.checkout': { et: 'Lahkumine', en: 'Check-out' },
+  'today.checkin': { et: 'Saabumine', en: 'Check-in' },
+  'today.nextTransfer': { et: 'Järgmine sõit', en: 'Next transfer' },
+  'today.goingHome': { et: 'Kojusõit', en: 'Going home' },
+  'today.beacon': { et: 'Majakas', en: 'Beacon' },
+  'today.driver': { et: 'Näita juhile', en: 'Show driver' },
+  'today.daysLeft': { et: 'päeva veel', en: 'days to go' },
+  'today.dayLeft': { et: 'päev veel', en: 'day to go' },
+  'today.depart': { et: 'ÄRA', en: 'GO' },
+  'today.quip': { et: 'Paki kergelt. Kübara ostad niikuinii sealt.', en: "Pack light. You'll buy the hat there anyway." },
+  'today.route': { et: 'Marsruut', en: 'Route' },
+  'today.hello': { et: 'Tere', en: 'Hello' },
+  'today.doneTitle': { et: 'Reis on läbi', en: 'Trip complete' },
+  'today.doneText': { et: 'Kõik on kodus. Pildid on alles, rahatähed sahtlis.', en: 'Everyone is home. The photos stay, the banknotes go in a drawer.' },
+  'plan.days': { et: 'päeva', en: 'days' },
+  'plan.countries': { et: 'riiki', en: 'countries' },
+  'plan.stops': { et: 'peatust', en: 'stops' },
+  'plan.stop': { et: 'peatus', en: 'stop' },
+  'plan.cityGuide': { et: 'Linnajuht', en: 'City guide' },
+  'plan.nights': { et: 'ööd', en: 'nights' },
+  'plan.night': { et: 'öö', en: 'night' },
+  'plan.callHotel': { et: 'Helista hotelli', en: 'Call hotel' },
+  'plan.bestTimes': { et: 'Parimad ajad', en: 'Best times' },
+  'plan.places': { et: 'Kohad', en: 'Places' },
+  'plan.sun': { et: 'Päike', en: 'Sun' },
+  'plan.back': { et: 'Plaan', en: 'Plan' },
+  'map.openGoogle': { et: 'Ava Google Mapsis', en: 'Open in Google Maps' },
+  'map.bestTime': { et: 'Parim aeg', en: 'Best time' },
+  'map.locate': { et: 'Minu asukoht', en: 'My location' },
+  'map.close': { et: 'Sulge', en: 'Close' },
+  'map.onMap': { et: 'Kaardil', en: 'On map' },
+  'map.loading': { et: 'Kaart laeb…', en: 'Loading map…' },
+} satisfies Record<string, Record<Lang, string>>;
+
+export type UiKey = keyof typeof ui;
+
+/** For client code: look up a string in the active language. */
+export function t(key: UiKey, lang: Lang): string {
+  return ui[key][lang];
+}

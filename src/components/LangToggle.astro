@@ -1,0 +1,27 @@
+---
+import { ui } from '../i18n/ui';
+---
+<div class="lang" role="group" aria-label={`${ui['lang.switch'].et} / ${ui['lang.switch'].en}`}>
+  <button type="button" data-set-lang="et">ET</button>
+  <button type="button" data-set-lang="en">EN</button>
+</div>
+
+<script>
+  import { setLang } from '../lib/lang';
+  document.querySelectorAll<HTMLButtonElement>('[data-set-lang]').forEach((b) =>
+    b.addEventListener('click', () => setLang(b.dataset.setLang as 'et' | 'en')),
+  );
+</script>
+
+<style>
+  .lang {
+    display: inline-flex; flex: none;
+    border: 2px solid var(--line); border-radius: 999px; overflow: hidden; background: var(--card);
+  }
+  button {
+    min-width: 48px; min-height: 40px; padding: 0 12px;
+    border: 0; background: transparent; font-weight: 800; font-size: 14px; cursor: pointer;
+  }
+  :global(html[data-lang='et']) [data-set-lang='et'],
+  :global(html[data-lang='en']) [data-set-lang='en'] { background: var(--ink); color: var(--on-ink); border-radius: 999px; }
+</style>

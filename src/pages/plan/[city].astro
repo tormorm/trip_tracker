@@ -1,0 +1,143 @@
+---
+import Base from '../../layouts/Base.astro';
+import T from '../../components/T.astro';
+import LangToggle from '../../components/LangToggle.astro';
+import MarkToday from '../../components/MarkToday.astro';
+import { trip, places } from '../../lib/data';
+import type { Stop } from '../../data/schema';
+import { fmtRange, fmtDay, fmtWeekday } from '../../lib/time';
+import { sunTimes } from '../../lib/sun';
+import { nights, telHref } from '../../lib/trip';
+
+export function getStaticPaths() {
+  return trip.stops.map((stop, i) => ({ params: { city: stop.id }, props: { stop, index: i } }));
+}
+interface Props {
+  stop: Stop;
+  index: number;
+}
+const { stop, index } = Astro.props;
+const h = stop.hotel;
+const n = nights(stop);
+const here = places.filter((p) => p.stopId === stop.id);
+const tiers = [here.filter((p) => p.tier === 'popular'), here.filter((p) => p.tier === 'hidden')];
+const days = trip.days.filter((d) => d.stopId === stop.id);
+const [inDate, inTime] = h.checkIn.split('T');
+const [outDate, outTime] = h.checkOut.split('T');
+---
+<Base title={stop.name}>
+  <main class="page">
+    <div class="corner"><LangToggle /></div>
+    <a class="back" href="/plan/">‹ <T k="plan.back" /></a>
+
+    <header class="head">
+      <p class="label kicker">
+        <span data-l="et">{index + 1}. peatus · {n} {n === 1 ? 'öö' : 'ööd'}</span><span data-l="en">Stop {index + 1} · {n} night{n === 1 ? '' : 's'}</span>
+        · <T v={fmtRange(stop.arrive, stop.depart)} />
+      </p>
+      <h1 class="serif">{stop.name}</h1>
+      {stop.nameLocal !== stop.name && <p class="local" lang={stop.country === 'KH' ? 'km' : 'vi'}>{stop.nameLocal}</p>}
+      <p class="aside blurb"><T v={stop.blurb} /></p>
+    </header>
+
+    <section class="hotel card-strong">
+      <div class="hotel-top">
+        <span class="hotel-icon" aria-hidden="true"><svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"><path d="M3 18V7m0 7h18v4M3 11h7v3m11 0v-1a2 2 0 0 0-2-2h-9" /></svg></span>
+        <div>
+          <h2>{h.name}</h2>
+          <p class="muted">{h.address}</p>
+          <p class="times">
+            <T k="today.checkin" /> <T v={fmtWeekday(inDate)} /> {inTime} · <T k="today.checkout" /> <T v={fmtWeekday(outDate)} /> {outTime}
+          </p>
+        </div>
+      </div>
+      <div class="hotel-actions">
+        <a class="btn btn-ink" href={`/driver/?hotel=${stop.id}`}><T k="today.driver" /></a>
+        <a class="btn" href={telHref(h.phone)}><T k="plan.callHotel" /></a>
+      </div>
+    </section>
+
+    {stop.bestTimes.length > 0 && (
+      <section>
+        <h2 class="h"><T k="plan.bestTimes" /></h2>
+        <dl class="best">
+          {stop.bestTimes.map((b) => (<><dt><T v={b.when} /></dt><dd><T v={b.what} /></dd></>))}
+        </dl>
+      </section>
+    )}
+
+    {here.length > 0 && (
+      <section>
+        <h2 class="h"><T k="plan.places" /></h2>
+        {tiers.map((list) => list.map((p) => (
+          <a class:list={['place', `place-${p.tier}`]} href={`/map/?place=${p.id}`}>
+            <span class:list={['mk', `mk-${p.tier}`]} />
+            <span class="pbody">
+              <strong>{p.name}</strong>
+              <small><T k={`tier.${p.tier}`} /> · <T v={p.bestTime} /></small>
+              <small class="pnote"><T v={p.note} /></small>
+            </span>
+          </a>
+        )))}
+      </section>
+    )}
+
+    <section>
+      <h2 class="h"><T k="plan.sun" /></h2>
+      <table class="sun">
+        <tbody>
+          {days.map((d) => {
+            const s = sunTimes(d.date, stop.lat, stop.lng);
+            return (
+              <tr data-date={d.date}>
+                <th scope="row"><T v={fmtDay(d.date)} /></th>
+                <td><span aria-label="sunrise">↑</span> {s.sunrise}</td>
+                <td><span aria-label="sunset">↓</span> {s.sunset}</td>
+              </tr>
+            );
+          })}
+        </tbody>
+      </table>
+    </section>
+  </main>
+  <MarkToday />
+</Base>
+
+<style>
+  .back { display: inline-flex; gap: 6px; align-items: center; min-height: var(--tap); font-weight: 800; font-size: 17px; text-decoration: none; }
+  .head { border-top: 3px solid var(--line); border-bottom: 1.5px solid var(--line); padding: 12px 0 14px; margin: 8px 0 16px; }
+  .kicker { color: var(--lacquer); margin: 0 0 4px; }
+  h1 { font-size: 44px; }
+  .local { margin: 4px 0 0; font-size: 18px; font-weight: 700; color: var(--ink-2); }
+  .blurb { margin: 6px 0 0; font-size: 17px; color: var(--ink-2); }
+  .hotel { padding: 14px; }
+  .hotel-top { display: grid; grid-template-columns: 36px 1fr; gap: 12px; }
+  .hotel-icon { width: 36px; height: 36px; border-radius: 8px; background: var(--ink); color: var(--on-ink); display: grid; place-items: center; }
+  .hotel h2 { font-size: 20px; font-weight: 800; }
+  .hotel p { margin: 2px 0 0; }
+  .times { font-weight: 700; font-size: 15px; }
+  .hotel-actions { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin-top: 12px; }
+  .hotel-actions .btn { padding: 0 8px; font-size: 16px; }
+  .h { font-size: 20px; font-weight: 800; margin: 22px 0 8px; }
+  .best { display: grid; grid-template-columns: auto 1fr; gap: 8px 16px; margin: 0; }
+  .best dt { font-weight: 800; }
+  .best dd { margin: 0; }
+  .place {
+    display: grid; grid-template-columns: 22px 1fr; gap: 12px; align-items: start;
+    padding: 12px 14px; margin: 8px 0; border-radius: var(--radius); text-decoration: none;
+    background: var(--card); border: 1.5px solid var(--hair);
+  }
+  .place-hidden { background: var(--jade-tint); border-color: var(--jade); }
+  .pbody { display: flex; flex-direction: column; }
+  .pbody small { color: var(--ink-2); font-size: 14px; }
+  .pnote { margin-top: 2px; }
+  .mk { width: 18px; height: 18px; margin-top: 3px; }
+  .mk-popular { border-radius: 50%; background: var(--lacquer); }
+  .mk-hidden { width: 15px; height: 15px; margin: 5px 0 0 2px; transform: rotate(45deg); background: var(--jade); }
+  .sun { width: 100%; border-collapse: collapse; font-variant-numeric: tabular-nums; }
+  .sun th { text-align: left; font-weight: 700; }
+  .sun th, .sun td { padding: 8px 4px; border-bottom: 1.5px solid var(--hair); }
+  .sun td { text-align: right; font-weight: 800; }
+  .sun tr:global(.is-today) { background: var(--fill); }
+  .sun tr:global(.is-today) th { color: var(--lacquer); }
+</style>

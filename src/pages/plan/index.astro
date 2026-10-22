@@ -2,13 +2,46 @@
 import Base from '../../layouts/Base.astro';
 import T from '../../components/T.astro';
 import LangToggle from '../../components/LangToggle.astro';
+import DayCard from '../../components/DayCard.astro';
+import MarkToday from '../../components/MarkToday.astro';
+import { trip } from '../../lib/data';
+import { fmtRange } from '../../lib/time';
+import { tripLength } from '../../lib/trip';
+
+const countries = new Set(trip.stops.map((s) => s.country)).size;
 ---
-<Base title="Plaan">
+<Base title="Plaan · Plan">
   <main class="page">
-    <header style="display:flex;justify-content:space-between;align-items:center;gap:12px">
-      <h1 class="serif" style="font-size:40px"><T k="tab.plan" /></h1>
-      <LangToggle />
-    </header>
-    <p class="muted"><T k="stub.soon" /></p>
+    <div class="corner"><LangToggle /></div>
+    <h1 class="serif title"><T k="tab.plan" /></h1>
+    <p class="muted summary">
+      {tripLength(trip)} <T k="plan.days" /> · {countries} <T k="plan.countries" /> · {trip.stops.length} <T k="plan.stops" />
+    </p>
+    <span class="pill offline-pill"><T k="offline" /></span>
+
+    {trip.stops.map((stop, i) => (
+      <section class="stop">
+        <header>
+          <div>
+            <p class="label kicker"><T k={`country.${stop.country}`} /> · <span data-l="et">{i + 1}. peatus</span><span data-l="en">stop {i + 1}</span></p>
+            <h2><span class="name">{stop.name}</span> <span class="range"><T v={fmtRange(stop.arrive, stop.depart)} /></span></h2>
+          </div>
+          <a class="guide" href={`/plan/${stop.id}/`}><T k="plan.cityGuide" /> ›</a>
+        </header>
+        {trip.days.filter((d) => d.stopId === stop.id).map((day) => <DayCard day={day} />)}
+      </section>
+    ))}
   </main>
+  <MarkToday />
 </Base>
+
+<style>
+  .title { font-size: 44px; margin-top: 6px; }
+  .summary { margin: 4px 0 8px; font-weight: 600; }
+  .stop { margin-top: 26px; }
+  .stop header { display: flex; justify-content: space-between; align-items: flex-end; gap: 8px; border-bottom: 2px solid var(--line); padding-bottom: 8px; }
+  .kicker { color: var(--lacquer); margin: 0 0 2px; }
+  h2 { font-size: 24px; font-weight: 800; }
+  .range { font-size: 17px; font-weight: 600; color: var(--ink-2); }
+  .guide { gap: 4px; color: var(--lacquer); font-weight: 800; text-decoration: none; min-height: var(--tap); display: inline-flex; align-items: center; white-space: nowrap; }
+</style>

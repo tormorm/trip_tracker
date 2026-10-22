@@ -8,8 +8,10 @@ interface Props {
   title: string;
   /** Overlays/full-screen pages hide the tab bar. */
   tabs?: boolean;
+  /** Full-height app screen (map): no page scroll. */
+  fullscreen?: boolean;
 }
-const { title, tabs = true } = Astro.props;
+const { title, tabs = true, fullscreen = false } = Astro.props;
 ---
 <!doctype html>
 <html lang={DEFAULT_LANG} data-lang={DEFAULT_LANG}>
@@ -25,9 +27,13 @@ const { title, tabs = true } = Astro.props;
         var l = localStorage.getItem('tc.lang');
         if (l === 'et' || l === 'en') { document.documentElement.dataset.lang = l; document.documentElement.lang = l; }
       } catch (e) {}
+      (function () {
+        var upd = function () { document.documentElement.classList.toggle('is-offline', !navigator.onLine); };
+        upd(); addEventListener('online', upd); addEventListener('offline', upd);
+      })();
     </script>
   </head>
-  <body>
+  <body class:list={{ fullscreen }}>
     <PlaceholderBanner />
     <slot />
     {tabs && <TabBar />}

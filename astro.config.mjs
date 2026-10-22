@@ -7,4 +7,5 @@ export default defineConfig({
   output: 'static',
   trailingSlash: 'ignore',
   integrations: [react()],
+  vite: { build: { chunkSizeWarningLimit: 1500 } },
 });

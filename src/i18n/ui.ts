@@ -156,6 +156,18 @@ export const ui = {
   'wish.ago.now': { et: 'just praegu', en: 'just now' },
   'wish.whoFirst': { et: 'Vali enne, kes sa oled.', en: 'Pick who you are first.' },
   'wish.savedCopy': { et: 'Näitan salvestatut', en: 'Showing saved copy' },
+  'save.title': { et: 'Kaart võrguta', en: 'Offline map' },
+  'save.button': { et: 'Salvesta linn võrguta kasutamiseks', en: 'Save city for offline' },
+  'save.again': { et: 'Uuenda salvestatud kaarti', en: 'Refresh saved map' },
+  'save.estimate': { et: 'Umbes', en: 'About' },
+  'save.tiles': { et: 'kaardiruutu', en: 'tiles' },
+  'save.saving': { et: 'Salvestan…', en: 'Saving…' },
+  'save.done': { et: 'Salvestatud', en: 'Saved' },
+  'save.used': { et: 'Rakendus kasutab telefonis', en: 'App storage on this phone' },
+  'save.noTiles': { et: 'Võrguta kaart vajab serverisse oma kaardifaili (vt DEPLOY.md).', en: 'Offline maps need the tile file on the server (see DEPLOY.md).' },
+  'save.noSw': { et: 'Laadi leht korra uuesti ja proovi siis.', en: 'Reload the page once, then try again.' },
+  'save.offline': { et: 'Salvestamiseks on vaja internetti.', en: 'Saving needs an internet connection.' },
+  'save.failed': { et: 'Osa jäi salvestamata — proovi uuesti.', en: 'Some tiles failed — try again.' },
 } satisfies Record<string, Record<Lang, string>>;
 
 export type UiKey = keyof typeof ui;

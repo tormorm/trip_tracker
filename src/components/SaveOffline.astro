@@ -1,0 +1,84 @@
+---
+import T from './T.astro';
+import type { Stop } from '../data/schema';
+interface Props {
+  stop: Stop;
+}
+const { stop } = Astro.props;
+---
+<section class="save card" data-save={stop.id} data-bbox={JSON.stringify(stop.bbox)}>
+  <h2><T k="save.title" /></h2>
+  <p class="muted est"><T k="save.estimate" /> <span data-est>…</span></p>
+  <button type="button" class="btn btn-ink" data-go><T k="save.button" /></button>
+  <progress hidden max="1" value="0"></progress>
+  <p class="status" data-status hidden></p>
+  <p class="muted small"><T k="save.used" />: <span data-used>—</span></p>
+  <template data-msg="noTiles"><T k="save.noTiles" /></template>
+  <template data-msg="noSw"><T k="save.noSw" /></template>
+  <template data-msg="offline"><T k="save.offline" /></template>
+  <template data-msg="failed"><T k="save.failed" /></template>
+  <template data-msg="saving"><T k="save.saving" /></template>
+  <template data-msg="done"><T k="save.done" /></template>
+  <template data-msg="again"><T k="save.again" /></template>
+  <template data-msg="tiles"><T k="save.tiles" /></template>
+</section>
+
+<script>
+  import { planFor, saveTiles, storageUsedMb, tilesAvailable } from '../lib/offlineTiles';
+
+  document.querySelectorAll<HTMLElement>('[data-save]').forEach(async (box) => {
+    const id = box.dataset.save!;
+    const bbox = JSON.parse(box.dataset.bbox!);
+    const $ = <T extends HTMLElement>(s: string) => box.querySelector<T>(s)!;
+    const msg = (k: string) => (box.querySelector<HTMLTemplateElement>(`[data-msg="${k}"]`)!.innerHTML);
+    const status = $('[data-status]'), bar = $<HTMLProgressElement>('progress'), go = $<HTMLButtonElement>('[data-go]');
+    const say = (html: string) => ((status.hidden = false), (status.innerHTML = html));
+    const savedKey = `tc.saved.${id}`;
+    const showUsed = async () => {
+      const mb = await storageUsedMb();
+      $('[data-used]').textContent = mb == null ? '—' : `${mb} MB`;
+    };
+
+    const plan = planFor(bbox);
+    $('[data-est]').innerHTML = `${plan.estimateMb} MB · ${plan.tiles.length} ${msg('tiles')}`;
+    showUsed();
+    let saved: string | null = null;
+    try { saved = localStorage.getItem(savedKey); } catch {}
+    if (saved) {
+      go.innerHTML = msg('again');
+      say(`${msg('done')} ${new Date(saved).toLocaleDateString()}`);
+    }
+
+    go.addEventListener('click', async () => {
+      if (!navigator.onLine) return say(msg('offline'));
+      if (!navigator.serviceWorker?.controller) return say(msg('noSw'));
+      if (!(await tilesAvailable())) return say(msg('noTiles'));
+      go.disabled = true;
+      bar.hidden = false;
+      say(msg('saving'));
+      const { failed } = await saveTiles(bbox, (d, t) => {
+        bar.value = d / t;
+        status.innerHTML = `${msg('saving')} ${Math.round((d / t) * 100)}%`;
+      });
+      go.disabled = false;
+      bar.hidden = true;
+      if (failed) say(msg('failed'));
+      else {
+        try { localStorage.setItem(savedKey, new Date().toISOString()); } catch {}
+        say(msg('done'));
+        go.innerHTML = msg('again');
+      }
+      showUsed();
+    });
+  });
+</script>
+
+<style>
+  .save { padding: 14px; margin-top: 22px; }
+  h2 { font-size: 20px; font-weight: 800; }
+  .est { margin: 4px 0 10px; font-size: 14px; }
+  .btn { width: 100%; }
+  progress { width: 100%; height: 10px; margin-top: 10px; accent-color: var(--lacquer); }
+  .status { font-weight: 700; margin: 8px 0 0; }
+  .small { font-size: 13px; margin: 8px 0 0; }
+</style>

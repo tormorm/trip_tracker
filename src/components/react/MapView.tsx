@@ -1,12 +1,7 @@
 import { useEffect, useMemo, useRef, useState } from 'react';
-import * as maplibregl from 'maplibre-gl';
-import { Protocol } from 'pmtiles';
-// MapLibre locates its worker relative to its own file, which bundling breaks.
-import workerUrl from 'maplibre-gl/dist/maplibre-gl-worker.mjs?url';
-import 'maplibre-gl/dist/maplibre-gl.css';
 import type { Place, Stop, Localized } from '../../data/schema';
-import { resolveStyle } from '../../lib/mapStyle';
-import { MAP } from '../../config';
+import { createMap, maplibregl } from '../../lib/mapSetup';
+import { localPins, refresh, PINS_EVENT, type Pin } from '../../lib/pins';
 import { tripNow } from '../../lib/time';
 import { dayNumber, gmapsHref, telHref } from '../../lib/trip';
 import { Tx, U } from './Tx';
@@ -20,14 +15,7 @@ interface MapDay {
   title: Localized;
   placeIds: string[];
 }
-export interface WishPin {
-  id: string;
-  name: string;
-  note?: string;
-  lat: number;
-  lng: number;
-  addedBy: string;
-}
+type WishPin = Pin;
 interface Props {
   startDate: string;
   stops: MapStop[];
@@ -40,7 +28,6 @@ const LAYERS: Layer[] = ['popular', 'hidden', 'wishlist', 'hotels'];
 type Selection = { kind: 'place'; place: MapPlace } | { kind: 'hotel'; stop: MapStop } | { kind: 'pin'; pin: WishPin };
 
 const LAYER_KEY = 'tc.mapLayers';
-let protocolAdded = false;
 
 function loadLayers(): Record<Layer, boolean> {
   const all = { popular: true, hidden: true, wishlist: true, hotels: true };
@@ -48,15 +35,6 @@ function loadLayers(): Record<Layer, boolean> {
     return { ...all, ...JSON.parse(localStorage.getItem(LAYER_KEY) ?? '{}') };
   } catch {
     return all;
-  }
-}
-
-/** Wishlist pins cached by the Wishlist page (filled in by phase 4). */
-function cachedPins(): WishPin[] {
-  try {
-    return JSON.parse(localStorage.getItem('tc.pins.cache') ?? '[]');
-  } catch {
-    return [];
   }
 }
 
@@ -98,29 +76,29 @@ export default function MapView({ startDate, stops, places, days }: Props) {
   useEffect(() => {
     let cancelled = false;
     let map: maplibregl.Map | undefined;
+    let pinMarkers: maplibregl.Marker[] = [];
+    const drawPins = async () => {
+      const pins = await localPins();
+      if (cancelled || !map) return;
+      pinMarkers.forEach((m) => m.remove());
+      pinMarkers = pins.map((pin) =>
+        marker(`mkr-wishlist${pin.pending ? ' pending' : ''}`, pin.name, () => {
+          setSel({ kind: 'pin', pin });
+          focus(pin.lng, pin.lat);
+        }).setLngLat([pin.lng, pin.lat]).addTo(map!),
+      );
+    };
+    addEventListener(PINS_EVENT, drawPins);
     (async () => {
-      const dark = matchMedia('(prefers-color-scheme: dark)').matches;
-      if (!protocolAdded) {
-        maplibregl.setWorkerUrl(workerUrl);
-        maplibregl.addProtocol('pmtiles', new Protocol().tile);
-        protocolAdded = true;
-      }
-      const style = await resolveStyle(dark);
-      if (cancelled || !mapEl.current) return;
-      map = new maplibregl.Map({
-        container: mapEl.current,
-        style,
+      if (!mapEl.current) return;
+      const created = await createMap(mapEl.current, {
         bounds: boundsOf(stops.map((s) => [s.lng, s.lat])),
         fitBoundsOptions: { padding: SHEET_PAD },
-        maxZoom: MAP.maxDataZoom + 3,
-        dragRotate: false,
-        pitchWithRotate: false,
-        attributionControl: { compact: true },
       });
-      map.touchZoomRotate.disableRotation();
+      map = created.map;
+      const dark = created.dark;
+      if (cancelled) return map.remove();
       mapRef.current = map;
-      // Missing tiles offline are expected; keep the console quiet.
-      map.on('error', () => {});
 
       map.on('load', () => {
         map!.addSource('route', {
@@ -157,12 +135,8 @@ export default function MapView({ startDate, stops, places, days }: Props) {
           focus(s.hotel.lng, s.hotel.lat);
         }, BED_ICON).setLngLat([s.hotel.lng, s.hotel.lat]).addTo(map);
       }
-      for (const pin of cachedPins()) {
-        marker('mkr-wishlist', pin.name, () => {
-          setSel({ kind: 'pin', pin });
-          focus(pin.lng, pin.lat);
-        }).setLngLat([pin.lng, pin.lat]).addTo(map);
-      }
+      drawPins();
+      refresh();
 
       // Initial view: ?place=… › ?day=… › today › whole route.
       const q = new URLSearchParams(location.search);
@@ -175,8 +149,12 @@ export default function MapView({ startDate, stops, places, days }: Props) {
         map.jumpTo({ center: [place.lng, place.lat], zoom: 15 });
         const day = days.find((d) => d.placeIds.includes(place.id));
         if (day) setActiveDay(day.date);
-      } else if (pinParam && q.get('lat') && q.get('lng')) {
-        map.jumpTo({ center: [Number(q.get('lng')), Number(q.get('lat'))], zoom: 15 });
+      } else if (pinParam) {
+        const pin = (await localPins()).find((p) => p.id === pinParam);
+        if (pin) {
+          setSel({ kind: 'pin', pin });
+          map.jumpTo({ center: [pin.lng, pin.lat], zoom: 15 });
+        }
       } else if (q.get('day') && days.some((d) => d.date === q.get('day'))) {
         flyToDay(q.get('day')!, false);
       } else if (days.some((d) => d.date === now)) {
@@ -185,6 +163,7 @@ export default function MapView({ startDate, stops, places, days }: Props) {
     })();
     return () => {
       cancelled = true;
+      removeEventListener(PINS_EVENT, drawPins);
       map?.remove();
       mapRef.current = null;
     };

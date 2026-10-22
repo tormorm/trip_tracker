@@ -58,3 +58,13 @@ export function bearingDeg(lat1: number, lng1: number, lat2: number, lng2: numbe
   const x = Math.cos(lat1 * r) * Math.sin(lat2 * r) - Math.sin(lat1 * r) * Math.cos(lat2 * r) * Math.cos((lng2 - lng1) * r);
   return ((Math.atan2(y, x) / r) + 360) % 360;
 }
+
+/** Closest stop within maxKm, for labelling pins by city. */
+export function nearestStop<S extends { lat: number; lng: number }>(stops: S[], lat: number, lng: number, maxKm = 60): S | undefined {
+  let best: S | undefined, bestD = maxKm * 1000;
+  for (const s of stops) {
+    const d = distanceM(lat, lng, s.lat, s.lng);
+    if (d < bestD) (best = s), (bestD = d);
+  }
+  return best;
+}

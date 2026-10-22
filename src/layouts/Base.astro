@@ -41,6 +41,10 @@ const { title, tabs = true, fullscreen = false, banner = true } = Astro.props;
     {banner && <PlaceholderBanner />}
     <slot />
     {tabs && <TabBar />}
+    <script>
+      import { startSync } from '../lib/pins';
+      startSync();
+    </script>
     {tabs && <NamePicker client:idle travellers={trip.travellers.map(({ id, name, color }) => ({ id, name, color }))} />}
   </body>
 </html>

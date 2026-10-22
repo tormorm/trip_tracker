@@ -1,0 +1,50 @@
+.wl-title { font-size: clamp(28px, 8.4vw, 40px); margin-top: 6px; padding-right: 116px; }
+.wl-sum { margin: 4px 0 6px; font-weight: 600; }
+.wl-mini { display: block; position: relative; height: 140px; margin: 14px 0; overflow: hidden; text-decoration: none; }
+.wl-mini-map { position: absolute; inset: 0; }
+.wl-open { position: absolute; right: 8px; bottom: 8px; background: var(--ink); color: var(--on-ink); border-radius: 8px; padding: 4px 10px; font-weight: 800; font-size: 13px; }
+.mini-pin { display: block; width: 20px; height: 26px; background: var(--laterite); clip-path: polygon(0 0, 100% 0, 100% 100%, 50% 74%, 0 100%); }
+.mini-pin.pending { opacity: 0.5; }
+.mini-pin.big { width: 30px; height: 40px; cursor: grab; }
+.wl-filters { display: flex; gap: 8px; margin: 0 0 12px; flex-wrap: wrap; }
+.wl-filters button { min-height: 44px; padding: 0 16px; border: 2px solid var(--line); border-radius: 999px; background: var(--card); font-weight: 800; cursor: pointer; }
+.wl-filters button[aria-pressed='true'] { background: var(--ink); color: var(--on-ink); }
+.wl-list { list-style: none; padding: 0; margin: 0; }
+.wl-list li { display: grid; grid-template-columns: 22px 1fr auto; gap: 12px; padding: 14px; border-top: 1.5px solid var(--hair); }
+.wl-list li:first-child { border-top: 0; }
+.wl-list li.pending .wl-mk { opacity: 0.5; }
+.wl-mk { width: 18px; height: 24px; margin-top: 2px; background: var(--laterite); clip-path: polygon(0 0, 100% 0, 100% 100%, 50% 74%, 0 100%); }
+.wl-name { font-weight: 800; font-size: 18px; text-decoration: none; }
+.wl-note { margin: 2px 0 0; color: var(--ink-2); }
+.wl-meta { margin: 6px 0 0; display: flex; align-items: center; gap: 6px; flex-wrap: wrap; font-size: 14px; font-weight: 600; color: var(--ink-2); }
+.wl-av { width: 22px; height: 22px; border-radius: 50%; display: grid; place-items: center; color: #fff; font-size: 12px; font-weight: 800; }
+.wl-del { width: 48px; height: 48px; margin: -8px -8px 0 0; border: 0; background: none; color: var(--ink-2); cursor: pointer; }
+.wl-empty { border: 2px dashed var(--hair); border-radius: var(--radius-lg); padding: 24px; text-align: center; }
+.wl-empty .serif { font-size: 22px; margin: 0 0 6px; }
+.wl-empty .muted { margin: 0; }
+.wl-fab {
+  position: fixed; right: 16px; bottom: calc(var(--tabbar-h) + env(safe-area-inset-bottom) + 16px); z-index: 20;
+  min-height: 60px; padding: 0 24px; border-radius: 999px; border: 2px solid var(--line);
+  background: var(--laterite); color: #1b1915; font-weight: 800; font-size: 18px; cursor: pointer;
+}
+.wl-who { text-align: right; margin-top: 8px; font-size: 13px; }
+
+.add { position: fixed; inset: 0; z-index: 90; background: var(--paper); overflow-y: auto; }
+.add-inner { max-width: 560px; margin: 0 auto; padding: calc(12px + env(safe-area-inset-top)) 20px calc(20px + env(safe-area-inset-bottom)); }
+.add-head { display: flex; justify-content: space-between; align-items: center; }
+.add-head h2 { font-size: 26px; font-weight: 800; }
+.add-x { width: 48px; height: 48px; border: 0; background: none; font-size: 36px; cursor: pointer; }
+.add-label { display: flex; flex-direction: column; gap: 6px; margin: 14px 0 0; font-weight: 800; }
+.add-label input, .add-label textarea {
+  min-height: 52px; border: 2px solid var(--line); border-radius: var(--radius); background: var(--card); color: var(--ink);
+  font: 600 17px var(--font); padding: 10px 12px;
+}
+.add-src { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; margin-top: 8px; }
+.add-src .btn { padding: 0 6px; font-size: 14px; }
+.add-small { font-size: 13px; margin: 6px 0 0; }
+.add-msg { background: var(--fill); border-radius: 10px; padding: 8px 12px; font-weight: 700; margin: 10px 0 0; }
+.pick-map { height: 280px; margin-top: 10px; border: 2px solid var(--line); border-radius: var(--radius); overflow: hidden; }
+.offline-only { display: none; }
+html.is-offline .offline-only { display: block; }
+.add-actions { display: grid; grid-template-columns: 1fr 2fr; gap: 10px; margin-top: 18px; }
+.add-actions .btn:disabled { opacity: 0.45; }

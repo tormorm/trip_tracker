@@ -8,6 +8,7 @@
 .mkr-popular .shape::before { width: 24px; height: 24px; border-radius: 50%; background: var(--lacquer); box-shadow: 0 0 0 3px var(--card), 0 0 0 5px var(--ink); }
 .mkr-hidden .shape::before { width: 19px; height: 19px; transform: rotate(45deg); background: var(--jade); box-shadow: 0 0 0 3px var(--card), 0 0 0 5px var(--ink); }
 .mkr-wishlist .shape::before { width: 20px; height: 26px; background: var(--laterite); clip-path: polygon(0 0, 100% 0, 100% 100%, 50% 74%, 0 100%); }
+.mkr-wishlist.pending .shape { opacity: 0.55; }
 .mkr-hotels .shape { width: 30px; height: 30px; margin: 1px; border-radius: 7px; background: var(--ink); color: var(--on-ink); box-shadow: 0 0 0 2px var(--card); }
 .mkr-hotels .shape::before { display: none; }
 .mkr .lbl {

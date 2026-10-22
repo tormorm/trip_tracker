@@ -1,0 +1,1 @@
+import{a as o}from"./hotelPicker.A_ufzpb5.js";import"./time.Dw5PyE-H.js";import"./trip.C3K-NOPS.js";o();try{const t=localStorage.getItem("tc.name");t&&document.querySelectorAll("[data-my-name]").forEach(e=>e.textContent=t)}catch{}

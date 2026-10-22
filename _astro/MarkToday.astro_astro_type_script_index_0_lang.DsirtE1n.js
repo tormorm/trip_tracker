@@ -1,0 +1,1 @@
+import{t as o}from"./time.Dw5PyE-H.js";const s=o().date;document.querySelectorAll("[data-date]").forEach(t=>{const a=t.dataset.date;t.classList.toggle("is-today",a===s),t.classList.toggle("is-past",a<s)});

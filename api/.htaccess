@@ -1,0 +1,4 @@
+# The config file is PHP (prints nothing), but there is no reason to serve it.
+<Files "pins.config.php">
+  Require all denied
+</Files>

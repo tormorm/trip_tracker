@@ -1,0 +1,1 @@
+import{D as e}from"./ui.Be_VzT-b.js";const n="tc.lang";function a(){return document.documentElement.dataset.lang==="en"?"en":e}function c(t){document.documentElement.dataset.lang=t,document.documentElement.lang=t;try{localStorage.setItem(n,t)}catch{}window.dispatchEvent(new CustomEvent("tc:lang",{detail:t}))}export{a as g,c as s};
